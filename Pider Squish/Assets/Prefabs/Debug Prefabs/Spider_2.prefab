@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1202357459570041276}
   - component: {fileID: 1202357459570041277}
   - component: {fileID: 1202357459570041266}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spider_2
   m_TagString: Spider
   m_Icon: {fileID: 0}
@@ -105,4 +105,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  ladyBug: {fileID: 0}

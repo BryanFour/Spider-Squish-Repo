@@ -5,40 +5,52 @@ using UnityEngine;
 
 public class SprayController : MonoBehaviour
 {
+	//	Move With Mouse Stuff.
 	private float actualDistance;
 	private bool canActive = false;
 
     void Start()
     {
 		// Disable the can on runtime
-		gameObject.SetActive(false);
-
+		gameObject.SetActive(false);    // Probally not needed.
+		//	Move With Mouse Stuff.
 		Vector3 toObjectVevtor = transform.position - Camera.main.transform.position;
 		Vector3 linearDistanceVector = Vector3.Project(toObjectVevtor, Camera.main.transform.forward);
 		actualDistance = linearDistanceVector.magnitude;
-    }
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
+	void Update()
+    {	
+		//	Move with Mouse Stuff.
 		Vector3 mousePosition = Input.mousePosition;
 		mousePosition.z = actualDistance;
 		transform.position = Camera.main.ScreenToWorldPoint(mousePosition);
-    }
+	}
 
 	public void ActivateCan()
-	{
-		//	If the can is "True"
-		if (canActive == true)
-		{
-			// Deactivate the can
-			gameObject.SetActive(false);
-			Debug.Log("can deactivated");
-		}
-		else if(!canActive)
+	{	//	If the spray can is not active.
+		if(!canActive && PlayerPrefs.GetInt("SprayCount") > 0)
 		{
 			// Activate the can
 			gameObject.SetActive(true);
+			//	Set the bool to true.
+			canActive = true;
+			//	PlayerPrefs Stuff.
+			int sprayCount = PlayerPrefs.GetInt("SprayCount");
+			sprayCount -= 1;
+			PlayerPrefs.SetInt("SprayCount", sprayCount);
+			GameManager.Instance.UpdateSprayCount();
+			//	PlayerPrefs Stuff End.
+			StartCoroutine(SprayUseTime());
 		}
+	}
+
+	IEnumerator SprayUseTime()
+	{
+		yield return new WaitForSecondsRealtime(5);
+		//	Disable the can.
+		gameObject.SetActive(false);
+		//	Set the bool to false.
+		canActive = false;
 	}
 }

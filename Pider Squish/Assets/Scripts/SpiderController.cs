@@ -25,6 +25,12 @@ public class SpiderController : MonoBehaviour
 		transform.position = Vector3.MoveTowards(transform.position, targetPosition, step );
 
 	}
+	
+	private void OnParticleCollision(GameObject col)
+	{
+		Destroy(gameObject);
+	}
+	
 
 	// Destroy with mouse click --DEBUG Input--
 	private void OnMouseDown()

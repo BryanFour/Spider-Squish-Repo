@@ -12,7 +12,8 @@ public class DestroyManager : MonoBehaviour
 
     void Update()
     {
-		if (Input.touchCount > 0 && Input.GetTouch(0).phase ==TouchPhase.Began)
+		//	If we are touching and not dragging.
+		if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
 		{
 			RaycastHit hit;
 			Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
