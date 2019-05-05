@@ -7,6 +7,7 @@ TagManager:
   - LadyBug
   - Spider
   - Spray
+  - SprayCollider
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - UI
   - 
   - 
-  - Spiders
+  - SpiderCollide
   - 
   - 
   - 

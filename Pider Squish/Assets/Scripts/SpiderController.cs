@@ -23,15 +23,14 @@ public class SpiderController : MonoBehaviour
 		float step = speed * Time.deltaTime;
 		// Move towards the lady bug/Target Position.
 		transform.position = Vector3.MoveTowards(transform.position, targetPosition, step );
-
+		//	Game Over Stuff.
+		if(transform.position == targetPosition)
+		{
+			Debug.Log("Spider reached target pos");
+			LevelManager.Instance.GameOver();
+		}
 	}
 	
-	private void OnParticleCollision(GameObject col)
-	{
-		Destroy(gameObject);
-	}
-	
-
 	// Destroy with mouse click --DEBUG Input--
 	private void OnMouseDown()
 	{

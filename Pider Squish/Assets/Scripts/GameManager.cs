@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class GameManager : MonoBehaviour
@@ -10,42 +11,36 @@ public class GameManager : MonoBehaviour
 	public static GameManager Instance { get; set; }
 	// GameManager instance Stuff End.
 
-	public TextMeshProUGUI sprayCountText;
-	public TextMeshProUGUI timerText;
-	private float timePlayed;
-	
+
 	void Awake()
-	{	// GameManager instance Stuff.
-		if (Instance == null) { Instance = this; } else { Debug.Log("Warning: multiple " + this + " in scene!"); }
+	{   // GameManager instance Stuff.
+		//Check if instance already exists
+		if (Instance == null)
+		{
+			//if not, set instance to this
+			Instance = this;
+		}
+		//If instance already exists and it's not this:
+		else if (Instance != this)
+		{
+
+			//Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a GameManager.
+			Destroy(gameObject);
+
+		}
+		DontDestroyOnLoad(gameObject);
 		// GameManager instance Stuff End.
 	}
-	void Start()
-    {
-		//	Set the spray count text to the player prefs spray count value.
-		sprayCountText.text = PlayerPrefs.GetInt("SprayCount", 0).ToString();
-    }
 
-	private void Update()
-	{
-		//	Timer and time formatting stuff.
-		timePlayed = Time.time;
-		string minutes = ((int)timePlayed / 60).ToString("00"); // Used to have the timer show in seconds and minutes rather that just seconds.
-		string seconds = (timePlayed % 60).ToString("00.00"); // Used to have the timer show in seconds and minutes rather that just seconds.
-		timerText.text = minutes + ":" + seconds;
-		//	Timer and time formatting stuff end.
+	public void LoadMainMenu()
+	{	
+		//	Load the main menu scene.	
+		SceneManager.LoadScene(0);
 	}
 
-	public void UpdateSprayCount()
+	public void LoadLevel()
 	{
-		//	Set the spray count text to the player prefs spray count value.
-		sprayCountText.text = PlayerPrefs.GetInt("SprayCount", 0).ToString();
-		
-	}
-
-	public void DeleteKey()
-	{
-		PlayerPrefs.DeleteKey("SprayCount");
-		//	Set the spray count text to the player prefs spray count value.
-		sprayCountText.text = PlayerPrefs.GetInt("SprayCount", 0).ToString();
+		//	Load the level scene.
+		SceneManager.LoadScene(1);
 	}
 }

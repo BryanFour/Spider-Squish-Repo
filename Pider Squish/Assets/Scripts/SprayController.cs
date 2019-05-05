@@ -39,7 +39,7 @@ public class SprayController : MonoBehaviour
 			int sprayCount = PlayerPrefs.GetInt("SprayCount");
 			sprayCount -= 1;
 			PlayerPrefs.SetInt("SprayCount", sprayCount);
-			GameManager.Instance.UpdateSprayCount();
+			LevelManager.Instance.UpdateSprayCount();
 			//	PlayerPrefs Stuff End.
 			StartCoroutine(SprayUseTime());
 		}

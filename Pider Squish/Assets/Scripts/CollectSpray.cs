@@ -32,7 +32,7 @@ public class CollectSpray : MonoBehaviour
 					//	Save the playerprefs
 					PlayerPrefs.SetInt("SprayCount", sprayCount);
 					//	Update the Spray Count Text.
-					GameManager.Instance.UpdateSprayCount();
+					LevelManager.Instance.UpdateSprayCount();
 					//	Destroy the collected spray can.
 					Destroy(hit.transform.gameObject);
 				}
@@ -47,7 +47,7 @@ public class CollectSpray : MonoBehaviour
 		//	Save the playerprefs
 		PlayerPrefs.SetInt("SprayCount", sprayCount);
 		//	Update the Spray Count Text.
-		GameManager.Instance.UpdateSprayCount();
+		LevelManager.Instance.UpdateSprayCount();
 		//	Destroy the collected spray can.
 		Destroy(gameObject);
 	}
