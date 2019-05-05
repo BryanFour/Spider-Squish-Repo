@@ -8,6 +8,7 @@ TagManager:
   - Spider
   - Spray
   - SprayCollider
+  - GameOverCollider
   layers:
   - Default
   - TransparentFX

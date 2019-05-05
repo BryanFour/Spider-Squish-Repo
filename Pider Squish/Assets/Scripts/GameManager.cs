@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 	public static GameManager Instance { get; set; }
 	// GameManager instance Stuff End.
 
+	private GameObject highScoreText;
 
 	void Awake()
 	{   // GameManager instance Stuff.
@@ -30,6 +31,31 @@ public class GameManager : MonoBehaviour
 		}
 		DontDestroyOnLoad(gameObject);
 		// GameManager instance Stuff End.
+	}
+
+	
+	public void Update()
+	{
+		//	Display the high score on the main menu scene
+		Scene currentScene = SceneManager.GetActiveScene();
+		string sceneName = currentScene.name;
+		if(sceneName == "MainMenu")
+		{
+			UpdateHighScore();
+		}
+	}
+
+	private void UpdateHighScore()
+	{
+		//	Get access to the high score text componant.
+		TextMeshProUGUI highScoreText = GameObject.Find("HighScore_Easy_Value").GetComponent<TextMeshProUGUI>();
+		//	Store the high score value inside a temp float "highScore".
+		float highScore = PlayerPrefs.GetFloat("HighScore", 0);
+		//	Make the time show in minutes and seconds.
+		string minutes = ((int)highScore / 60).ToString("00"); // Used to have the timer show in seconds and minutes rather that just seconds.
+		string seconds = (highScore % 60).ToString("00.00"); // Used to have the timer show in seconds and minutes rather that just seconds.
+		//	Change the high score text componant to our high score.
+		highScoreText.text = minutes + ":" + seconds;
 	}
 
 	public void LoadMainMenu()
