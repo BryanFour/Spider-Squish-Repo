@@ -22,6 +22,10 @@ public class SpiderSpawner : MonoBehaviour
 
 	void Spawn()
 	{
+		if(LevelManager.Instance.countDownHasFinished == false)
+		{
+			return;
+		}
 		// Find a random index between zero and one less than the number of spawn points.
 		int spawnPointIndex = Random.Range(0, spawnPoints.Length);
 		// Choose a random spider.

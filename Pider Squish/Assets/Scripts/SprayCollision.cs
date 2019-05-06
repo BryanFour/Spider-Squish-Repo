@@ -18,7 +18,6 @@ public class SprayCollision : MonoBehaviour
 
 	private void OnParticleCollision(GameObject col)
 	{
-		Debug.Log("Collision with spray");
 		Destroy(transform.parent.gameObject);
 	}
 }

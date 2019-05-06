@@ -17,6 +17,11 @@ public class SpiderController : MonoBehaviour
 
 	void Update()
 	{
+		if(LevelManager.Instance.countDownHasFinished == false)
+		{
+			return;
+		}
+		
 		//	----- Move the spider a step closer to the lady bug/Target Position.
 		// Calculate the distance to move/step.
 		float step = speed * Time.deltaTime;

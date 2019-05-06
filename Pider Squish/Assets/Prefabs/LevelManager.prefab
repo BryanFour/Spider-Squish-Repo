@@ -46,5 +46,11 @@ MonoBehaviour:
   sprayCountText: {fileID: 0}
   timerText: {fileID: 0}
   timeSinceStart: 0
+  countDownHasFinished: 0
+  countDownArray:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   highScore: 0
   currentScore: 0

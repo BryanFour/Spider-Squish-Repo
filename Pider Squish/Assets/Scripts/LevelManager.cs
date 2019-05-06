@@ -15,6 +15,9 @@ public class LevelManager : MonoBehaviour
 	public TextMeshProUGUI timerText;
 	private float timePlayed;
 	public float timeSinceStart;
+	private const float PRE_START_COUNTDOWN = 4;
+	public bool countDownHasFinished = false;
+	public GameObject[] countDownArray;
 	//	High Score Stuff
 	public float highScore;
 	public float currentScore;
@@ -42,15 +45,32 @@ public class LevelManager : MonoBehaviour
     {
 		//	Set the spray count text to the player prefs spray count value.
 		sprayCountText.text = PlayerPrefs.GetInt("SprayCount", 0).ToString();
-
-		//	Reset Time.time Stuff.
+		
+		//	Find out how low the app has been running for, used in later calculations.
 		timeSinceStart = Time.time;
+		//	For loop to disable all elements in the countDownArray.
+		for(int i = 0; i < countDownArray.Length; i++)
+		{
+			countDownArray[i].SetActive(false);
+		}
+		//	TODO - comment this
+		StartCoroutine(CountDown());
 	}
 
     void Update()
     {
 		//	Timer and time formatting stuff.
-		timePlayed = Time.time - timeSinceStart;
+		//	Exit out of this method if the pre start countdown hasnt finished
+		if (Time.time - timeSinceStart < PRE_START_COUNTDOWN)
+		{
+			countDownHasFinished = false;
+			return;
+		}
+		else
+		{
+			countDownHasFinished = true;
+		}
+		timePlayed = Time.time - (timeSinceStart + PRE_START_COUNTDOWN);
 		string minutes = ((int)timePlayed / 60).ToString("00"); // Used to have the timer show in seconds and minutes rather that just seconds.
 		string seconds = (timePlayed % 60).ToString("00.00"); // Used to have the timer show in seconds and minutes rather that just seconds.
 		timerText.text = minutes + ":" + seconds;
@@ -67,14 +87,32 @@ public class LevelManager : MonoBehaviour
 	public void GameOver()
 	{
 		currentScore = timePlayed;
-		Debug.Log("Current Score is " + currentScore);
 		if (currentScore > PlayerPrefs.GetFloat("HighScore", 0))
 		{
 			PlayerPrefs.SetFloat("HighScore", currentScore);
 		}
-		Debug.Log("High Score Is " + PlayerPrefs.GetFloat("HighScore"));
 		GameManager.Instance.LoadMainMenu();
 
+	}
+
+	IEnumerator CountDown()
+	{   //	Enable/Disable elemets from the Count down array.
+		countDownArray[0].SetActive(true);
+		//Debug.Log("3");
+		yield return new WaitForSecondsRealtime(.95f);
+		countDownArray[0].SetActive(false);
+		countDownArray[1].SetActive(true);
+		//Debug.Log("2");
+		yield return new WaitForSecondsRealtime(.95f);
+		countDownArray[1].SetActive(false);
+		countDownArray[2].SetActive(true);
+		//Debug.Log("1");
+		yield return new WaitForSecondsRealtime(.95f);
+		countDownArray[2].SetActive(false);
+		countDownArray[3].SetActive(true);
+		//Debug.Log("GO");
+		yield return new WaitForSecondsRealtime(.95f);
+		countDownArray[3].SetActive(false);
 	}
 
 	public void DeleteSprayKey()
@@ -88,5 +126,12 @@ public class LevelManager : MonoBehaviour
 	{
 		PlayerPrefs.DeleteKey("HighScore");
 		Debug.Log("High Score Key Deleted");
+	}
+
+	public void AddSprays()
+	{
+		int sprayCount = PlayerPrefs.GetInt("SprayCount");
+		sprayCount += 1;
+		PlayerPrefs.SetInt("SprayCount", sprayCount);
 	}
 }
