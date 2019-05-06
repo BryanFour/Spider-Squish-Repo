@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class SpraySpawner : MonoBehaviour
 {
+	public int spawnRate = 2;
 	public GameObject Spray;
 	public Transform[] spawnPoints;
 	
     void Start()
     {
-		InvokeRepeating("Spawn", 2, 2);
+		InvokeRepeating("Spawn", spawnRate, spawnRate);
     }
 
     // Update is called once per frame
