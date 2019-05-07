@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class SpiderSpawner : MonoBehaviour
 {
+	//	How long to wait before the first spider is spawned
+	private float spawnTime = 0.5f;
 	public GameObject[] spiders;
-	public float spawnTime = 1;
 	public Transform[] spawnPoints;
 
 	void Start()
 	{
-		float randomSpawnTime = Random.Range(0.5f, 2.5f);
+		float randomSpawnTime = Random.Range(0.8f, 1.5f);
 		InvokeRepeating("Spawn", spawnTime, randomSpawnTime);
 	}
 

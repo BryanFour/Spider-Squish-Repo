@@ -1,0 +1,80 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class SoundManager : MonoBehaviour
+{
+	// SoundManager instance Stuff.
+	public static SoundManager Instance { get; set; }
+
+	private AudioSource squishAudioSource;
+	private AudioSource bgAudioSource;
+	public AudioClip[] squishSFX;
+	public AudioClip bgMusic;
+
+	private int sceneIndex;
+	private bool bgMusicIsPlaying = false;
+
+	void Awake()
+	{   // SoundManager instance Stuff.
+		//Check if instance already exists
+		if (Instance == null)
+		{
+			//if not, set instance to this
+			Instance = this;
+		}
+		//If instance already exists and it's not this:
+		else if (Instance != this)
+		{
+
+			//Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a SoundManager.
+			Destroy(gameObject);
+
+		}
+		DontDestroyOnLoad(gameObject);
+	}
+
+	void Start()
+    {
+        squishAudioSource = gameObject.AddComponent<AudioSource>();
+		bgAudioSource = gameObject.AddComponent<AudioSource>();
+		bgAudioSource.loop = true;
+		bgAudioSource.clip = bgMusic;
+	}
+
+    void Update()
+    {
+		sceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+		if (sceneIndex == 1 && bgMusicIsPlaying == false)
+		{
+			StartBgMusic();
+		}
+		else if(sceneIndex == 0 && bgMusicIsPlaying == true)
+		{
+			StopBgMusic();
+		}
+    }
+
+	private void StartBgMusic()
+	{
+		bgAudioSource.Play();
+		bgMusicIsPlaying = true;
+	}
+
+	private void StopBgMusic()
+	{
+		bgAudioSource.Stop();
+		bgMusicIsPlaying = false;
+	}
+
+	public void PlaySquishSFX()
+	{
+		//	Get a random Squish SFX.
+		int randomSFX = Random.Range(0, squishSFX.Length);
+		//
+		squishAudioSource.PlayOneShot(squishSFX[randomSFX]);
+		
+	}
+}

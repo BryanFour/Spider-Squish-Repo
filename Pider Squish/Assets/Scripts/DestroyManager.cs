@@ -17,9 +17,10 @@ public class DestroyManager : MonoBehaviour
 		{
 			RaycastHit hit;
 			Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
-			if (Physics.Raycast(ray, out hit))
+			if (Physics.Raycast(ray, out hit))												//------ EVERYTHING INSIDE THIS IF STATEMENT WILL ONLY HAPPEN IF WE TOUCH THE SCREEN... MOUSE CLICKS DO NOTHING!!!!!!!!!
 				if (hit.collider.gameObject.tag == "Spider")
 				{
+					SoundManager.Instance.PlaySquishSFX();
 					Destroy(hit.transform.gameObject);
 				}
 		}

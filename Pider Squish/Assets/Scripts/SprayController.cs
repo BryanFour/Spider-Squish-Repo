@@ -79,7 +79,7 @@ public class SprayController : MonoBehaviour
 
 	IEnumerator SprayDuration()
 	{
-		yield return new WaitForSecondsRealtime(5);
+		yield return new WaitForSecondsRealtime(lengthOfSpray);
 		//	Bool to stop players activating can while acan is already active
 		canActive = false;
 		onCoolDown = true;

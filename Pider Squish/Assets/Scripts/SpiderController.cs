@@ -50,6 +50,7 @@ public class SpiderController : MonoBehaviour
 	// Destroy with mouse click --DEBUG Input--
 	private void OnMouseDown()
 	{
+		SoundManager.Instance.PlaySquishSFX();
 		Destroy(gameObject);
 	}
 }
