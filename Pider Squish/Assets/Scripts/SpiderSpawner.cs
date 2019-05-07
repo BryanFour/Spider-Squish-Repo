@@ -9,16 +9,11 @@ public class SpiderSpawner : MonoBehaviour
 	public float spawnTime = 1;
 	public Transform[] spawnPoints;
 
-    void Start()
-    {
-		float randomSpawnTime = Random.Range(.5f, 2.5f);
+	void Start()
+	{
+		float randomSpawnTime = Random.Range(0.5f, 2.5f);
 		InvokeRepeating("Spawn", spawnTime, randomSpawnTime);
-    }
-
-    void Update()
-    {
-        
-    }
+	}
 
 	void Spawn()
 	{

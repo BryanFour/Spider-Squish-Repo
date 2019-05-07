@@ -22,6 +22,12 @@ public class LevelManager : MonoBehaviour
 	public float highScore;
 	public float currentScore;
 
+	//	When the game started / when the player starts playing, spiders come out, timers starts ect.
+	public float gamePlayHasStarted;
+
+	//	The spiders speed to be increased in the coroutine.
+	public float spiderSpeed = 1;
+
 	void Awake()
 	{   // LevelManager instance Stuff.
 		//Check if instance already exists
@@ -113,6 +119,26 @@ public class LevelManager : MonoBehaviour
 		//Debug.Log("GO");
 		yield return new WaitForSecondsRealtime(.95f);
 		countDownArray[3].SetActive(false);
+
+		//	Store the Time.time value when gameplay started
+		gamePlayHasStarted = Time.time;
+		//	Start the spider speed increase coroutine.
+		StartCoroutine(SpiderSpeed());
+	}
+
+	IEnumerator SpiderSpeed()
+	{
+		if(spiderSpeed < 5)
+		{
+			yield return new WaitForSecondsRealtime(15);
+			spiderSpeed = spiderSpeed + 0.5f;
+			Debug.Log("Spider speed increased");
+			StartCoroutine(SpiderSpeed()); ;
+		}
+		else
+		{
+			Debug.Log("Max speed reached");
+		}
 	}
 
 	public void DeleteSprayKey()

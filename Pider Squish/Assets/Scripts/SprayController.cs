@@ -11,7 +11,7 @@ public class SprayController : MonoBehaviour
 	//	Bool to stop players activating can while acan is already active
 	private bool canActive = false;
 	// How long we can spray for
-	private float lengthOfSpray = 5;
+	private float lengthOfSpray = 5; // ----------- I dont seem to be using this.
 	//	How long the spray cooldown is.
 	private float sprayCoolDownLength = 15;
 	//	where we are in the cooldown

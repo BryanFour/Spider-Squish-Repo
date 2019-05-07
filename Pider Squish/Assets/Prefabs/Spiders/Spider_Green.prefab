@@ -1021,7 +1021,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2a5917ce68248342a56c5a2d3dec130, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  spiderAnim: {fileID: 3965261153696430232}
 --- !u!65 &679964402548566906
 BoxCollider:
   m_ObjectHideFlags: 0
