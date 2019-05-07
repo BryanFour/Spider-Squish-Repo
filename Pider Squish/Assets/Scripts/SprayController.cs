@@ -9,9 +9,9 @@ public class SprayController : MonoBehaviour
 	//	Move With Mouse Stuff.
 	private float actualDistance;
 	//	Bool to stop players activating can while acan is already active
-	private bool canActive = false;
+	public bool canActive = false;
 	// How long we can spray for
-	private float lengthOfSpray = 5; // ----------- I dont seem to be using this.
+	private float lengthOfSpray = 10; // ----------- I dont seem to be using this.
 	//	How long the spray cooldown is.
 	private float sprayCoolDownLength = 15;
 	//	where we are in the cooldown
@@ -71,7 +71,8 @@ public class SprayController : MonoBehaviour
 				sprayCount -= 1;
 				PlayerPrefs.SetInt("SprayCount", sprayCount);
 				LevelManager.Instance.UpdateSprayCount();
-				//	PlayerPrefs Stuff End.
+				//	Start the spray can SFX.
+				SoundManager.Instance.StartSpraySFX();
 				StartCoroutine(SprayDuration());
 			}
 		}

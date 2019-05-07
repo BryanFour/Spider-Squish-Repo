@@ -1083,7 +1083,7 @@ GameObject:
   - component: {fileID: 152317930}
   - component: {fileID: 152317929}
   - component: {fileID: 152317928}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1324,6 +1324,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fcbca31942ec1840961ec55ada7b236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bloodSplatter: {fileID: 1113283167626311225, guid: 1c891126c6c10c945874eaefb57b7277,
+    type: 3}
 --- !u!4 &166974961
 Transform:
   m_ObjectHideFlags: 0
@@ -2127,7 +2129,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 0.25
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -2877,7 +2879,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 400
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -2930,7 +2932,7 @@ ParticleSystem:
     rateOverDistance:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 30
+      scalar: 20
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -2994,7 +2996,7 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 1
+          value: 0.7868861
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -3317,7 +3319,7 @@ ParticleSystem:
         serializedVersion: 2
         key0: {r: 0.34901962, g: 0.67058825, b: 0.09019608, a: 1}
         key1: {r: 0.3497638, g: 0.6698113, b: 0.091625154, a: 1}
-        key2: {r: 0.34901962, g: 0.67058825, b: 0.09019608, a: 0.39215687}
+        key2: {r: 0.34901962, g: 0.67058825, b: 0.09019608, a: 0.74509805}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
@@ -3332,7 +3334,7 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 47609
+        atime1: 32768
         atime2: 65535
         atime3: 0
         atime4: 0
@@ -6710,7 +6712,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 265998573}
   m_LocalRotation: {x: -0.12384663, y: 0.6961544, z: 0.69619775, w: 0.12385437}
-  m_LocalPosition: {x: 5.28, y: 0.58, z: 1.72}
+  m_LocalPosition: {x: 6.33, y: 0.58, z: 0.57}
   m_LocalScale: {x: 0.94324577, y: 1.2691176, z: 0.94324523}
   m_Children: []
   m_Father: {fileID: 0}
@@ -9358,8 +9360,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 2.6208876e+20, y: 4.5448224e+30, z: 3.8827727e+9,
-    w: 7.1839e+22}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -19084,6 +19085,46 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 798784876238466466, guid: bab56a0f431e1c64d8bf7c148357ec7c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8667841263111672841, guid: bab56a0f431e1c64d8bf7c148357ec7c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5704307185839708022, guid: bab56a0f431e1c64d8bf7c148357ec7c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9152132921898876103, guid: bab56a0f431e1c64d8bf7c148357ec7c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4044480253280329284, guid: bab56a0f431e1c64d8bf7c148357ec7c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372181072995518116, guid: bab56a0f431e1c64d8bf7c148357ec7c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8398211048387610830, guid: bab56a0f431e1c64d8bf7c148357ec7c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984893573516770925, guid: bab56a0f431e1c64d8bf7c148357ec7c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bab56a0f431e1c64d8bf7c148357ec7c, type: 3}

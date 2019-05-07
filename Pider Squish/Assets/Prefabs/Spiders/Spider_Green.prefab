@@ -1022,6 +1022,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spiderAnim: {fileID: 3965261153696430232}
+  bloodSplatter: {fileID: 1113283167626311225, guid: 1c891126c6c10c945874eaefb57b7277,
+    type: 3}
 --- !u!65 &679964402548566906
 BoxCollider:
   m_ObjectHideFlags: 0

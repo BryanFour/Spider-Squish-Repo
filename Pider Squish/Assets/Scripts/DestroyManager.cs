@@ -5,12 +5,9 @@ using UnityEngine;
 
 public class DestroyManager : MonoBehaviour
 {
-    void Start()
-    {
-        
-    }
+	public GameObject bloodSplatter;
 
-    void Update()
+	void Update()
     {
 		//	If we are touching and not dragging.
 		if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
@@ -20,7 +17,10 @@ public class DestroyManager : MonoBehaviour
 			if (Physics.Raycast(ray, out hit))												//------ EVERYTHING INSIDE THIS IF STATEMENT WILL ONLY HAPPEN IF WE TOUCH THE SCREEN... MOUSE CLICKS DO NOTHING!!!!!!!!!
 				if (hit.collider.gameObject.tag == "Spider")
 				{
+					//	Play the SquishSFX/
 					SoundManager.Instance.PlaySquishSFX();
+					//	Instanciate the splatterFX
+					Instantiate(bloodSplatter, gameObject.transform.position, bloodSplatter.transform.rotation);
 					Destroy(hit.transform.gameObject);
 				}
 		}

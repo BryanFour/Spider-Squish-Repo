@@ -10,12 +10,18 @@ public class SoundManager : MonoBehaviour
 
 	private AudioSource squishAudioSource;
 	private AudioSource bgAudioSource;
+	private AudioSource sprayingAudioSource;
+	private AudioSource rattleAudioSource;
 	public AudioClip[] squishSFX;
 	public AudioClip bgMusic;
 
 	private int sceneIndex;
 	private bool bgMusicIsPlaying = false;
 
+	//	Spray Can Stuff
+	public AudioClip spraySFX;
+	public AudioClip sprayRattle;
+	
 	void Awake()
 	{   // SoundManager instance Stuff.
 		//Check if instance already exists
@@ -35,27 +41,54 @@ public class SoundManager : MonoBehaviour
 		DontDestroyOnLoad(gameObject);
 	}
 
+
 	void Start()
-    {
-        squishAudioSource = gameObject.AddComponent<AudioSource>();
+	{
+		squishAudioSource = gameObject.AddComponent<AudioSource>();
 		bgAudioSource = gameObject.AddComponent<AudioSource>();
 		bgAudioSource.loop = true;
 		bgAudioSource.clip = bgMusic;
+		//	Spray Can Spray Stuff
+		sprayingAudioSource = gameObject.AddComponent<AudioSource>();
+		sprayingAudioSource.clip = spraySFX; //---- Probally not needed
+		//	Spray Can Rattle Stuff.
+		rattleAudioSource = gameObject.AddComponent<AudioSource>();
+
+
+
 	}
 
     void Update()
     {
+		//	BackGround SFX
 		sceneIndex = SceneManager.GetActiveScene().buildIndex;
-
 		if (sceneIndex == 1 && bgMusicIsPlaying == false)
+		//if (bgMusicIsPlaying == false)
 		{
 			StartBgMusic();
 		}
 		else if(sceneIndex == 0 && bgMusicIsPlaying == true)
+		//else if (bgMusicIsPlaying == true)
 		{
 			StopBgMusic();
 		}
     }
+
+	public void SprayRattleSFX()
+	{
+		rattleAudioSource.PlayOneShot(sprayRattle);
+	}
+
+	public void StartSpraySFX()
+	{
+		Debug.Log("Spray playing");
+		sprayingAudioSource.Play();
+	}
+
+	public void StopSpraySFX()
+	{
+		sprayingAudioSource.Stop();
+	}
 
 	private void StartBgMusic()
 	{

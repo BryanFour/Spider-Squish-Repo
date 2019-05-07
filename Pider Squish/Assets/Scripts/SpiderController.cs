@@ -11,6 +11,9 @@ public class SpiderController : MonoBehaviour
 	private float spiderSpeed;
 	//	Get access to the spider animation clip, Drop the spider prefab in here to get it.
 	public Animation spiderAnim;
+	//
+	public GameObject bloodSplatter;
+	
 
 	void Start()
     {
@@ -42,15 +45,20 @@ public class SpiderController : MonoBehaviour
 		//	If a spider reaches the target position.
 		if(transform.position == targetPosition)
 		{
+			//	Stop the spray can sound if its playing.
+			SoundManager.Instance.StopSpraySFX();
 			//	Run the game over method in the level manager.
 			LevelManager.Instance.GameOver();
 		}
 	}
-
+	
 	// Destroy with mouse click --DEBUG Input--
 	private void OnMouseDown()
 	{
 		SoundManager.Instance.PlaySquishSFX();
+		//	Instanciate the splatterFX
+		Instantiate(bloodSplatter, gameObject.transform.position, bloodSplatter.transform.rotation);
 		Destroy(gameObject);
 	}
+	
 }

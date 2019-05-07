@@ -33,6 +33,8 @@ public class CollectSpray : MonoBehaviour
 					PlayerPrefs.SetInt("SprayCount", sprayCount);
 					//	Update the Spray Count Text.
 					LevelManager.Instance.UpdateSprayCount();
+					//	Play the collect spray SFX (The Rattle).
+					SoundManager.Instance.SprayRattleSFX();
 					//	Destroy the collected spray can.
 					Destroy(hit.transform.gameObject);
 				}
@@ -48,6 +50,8 @@ public class CollectSpray : MonoBehaviour
 		PlayerPrefs.SetInt("SprayCount", sprayCount);
 		//	Update the Spray Count Text.
 		LevelManager.Instance.UpdateSprayCount();
+		//	Play the collect spray SFX (The Rattle).
+		SoundManager.Instance.SprayRattleSFX();
 		//	Destroy the collected spray can.
 		Destroy(gameObject);
 	}
