@@ -7,7 +7,7 @@ TextureImporter:
     second: Button_0
   - first:
       213: 21300002
-    second: Button_1
+    second: Rectangle_Button
   - first:
       213: 21300004
     second: Button_2
@@ -19,7 +19,7 @@ TextureImporter:
     second: Button_4
   - first:
       213: -2574449355943416012
-    second: Button_5
+    second: Restart_Button
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -145,7 +145,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Button_1
+      name: Rectangle_Button
       rect:
         serializedVersion: 2
         x: 1084
@@ -216,7 +216,7 @@ TextureImporter:
         width: 183
         height: 184
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -229,7 +229,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Button_5
+      name: Restart_Button
       rect:
         serializedVersion: 2
         x: 3500
@@ -237,7 +237,7 @@ TextureImporter:
         width: 183
         height: 183
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

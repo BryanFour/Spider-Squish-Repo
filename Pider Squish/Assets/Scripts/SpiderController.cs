@@ -55,10 +55,12 @@ public class SpiderController : MonoBehaviour
 	// Destroy with mouse click --DEBUG Input--
 	private void OnMouseDown()
 	{
-		SoundManager.Instance.PlaySquishSFX();
-		//	Instanciate the splatterFX
-		Instantiate(bloodSplatter, gameObject.transform.position, bloodSplatter.transform.rotation);
-		Destroy(gameObject);
+		if(LevelManager.Instance.gameOver == false)
+		{
+			SoundManager.Instance.PlaySquishSFX();
+			//	Instanciate the splatterFX
+			Instantiate(bloodSplatter, gameObject.transform.position, bloodSplatter.transform.rotation);
+			Destroy(gameObject);
+		}
 	}
-	
 }

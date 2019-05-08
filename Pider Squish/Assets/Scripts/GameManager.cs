@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
 	public static GameManager Instance { get; set; }
 	// GameManager instance Stuff End.
 
+	//	Is this the first time playing the game.
+	public bool hasPlayedBefore = false;	//--------- Remove this if its not needed.
+
 	private GameObject highScoreText;
 
 	void Awake()
@@ -33,7 +36,24 @@ public class GameManager : MonoBehaviour
 		// GameManager instance Stuff End.
 	}
 
-	
+	private void Start()
+	{	
+		//	If the player has played before.	
+		if(PlayerPrefs.HasKey("HasPlayedBefore") == true)
+		{
+			hasPlayedBefore = true;
+			Debug.Log("Player has played before");
+		}
+		//	If the player hasnt played before
+		else if(PlayerPrefs.HasKey("HasPlayedBefore") == false)
+		{
+			hasPlayedBefore = false;
+			//	Run the FirstTimePlaying method.
+			FirstTimePlaying();
+			Debug.Log("Player has not played before");
+		}
+	}
+
 	public void Update()
 	{
 		//	Display the high score on the main menu scene
@@ -43,6 +63,13 @@ public class GameManager : MonoBehaviour
 		{
 			UpdateHighScore();
 		}
+	}
+
+	private void FirstTimePlaying()
+	{
+		PlayerPrefs.SetInt("SprayCount", 5);
+		PlayerPrefs.SetString("HasPlayedBefore", "Yes");
+		hasPlayedBefore = true;
 	}
 
 	private void UpdateHighScore()

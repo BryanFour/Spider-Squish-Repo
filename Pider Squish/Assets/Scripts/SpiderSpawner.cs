@@ -32,7 +32,7 @@ public class SpiderSpawner : MonoBehaviour
 
 	IEnumerator SpawnSpiders()
 	{
-		if(LevelManager.Instance.countDownHasFinished == true)
+		if(LevelManager.Instance.countDownHasFinished == true && LevelManager.Instance.gameOver == false)
 		{
 			// Choose a random spider.
 			int randomSpider = Random.Range(0, spiders.Length);

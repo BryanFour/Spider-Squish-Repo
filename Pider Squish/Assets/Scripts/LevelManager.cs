@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -39,6 +40,11 @@ public class LevelManager : MonoBehaviour
 	public float spiderStartSpeed = 1.5f;
 	public float spiderMaxSpeed = 2f;
 
+	//	Game Over Stuff
+	public bool gameOver = false;
+	public GameObject gameOverPanel;
+	//	Everything that has to be disabled when game is over
+	public GameObject[] disableOnGameOverArray;
 
 	void Awake()
 	{   // LevelManager instance Stuff.
@@ -61,6 +67,12 @@ public class LevelManager : MonoBehaviour
 	}
 	void Start()
     {
+		// Set the time scale to 1 on runtime
+		Time.timeScale = 1;
+		
+		//	Disable the game over panel at runtime.
+		gameOverPanel.SetActive(false);
+		
 		//	Set the spray count text to the player prefs spray count value.
 		sprayCountText.text = PlayerPrefs.GetInt("SprayCount", 0).ToString();
 		
@@ -72,7 +84,12 @@ public class LevelManager : MonoBehaviour
 		{
 			countDownArray[i].SetActive(false);
 		}
-		//	TODO - comment this
+		//	Forloop to enable everything that gets disabled when game is over
+		for (int i = 0; i < disableOnGameOverArray.Length; i++)
+		{
+			disableOnGameOverArray[i].SetActive(true);
+		}
+		//	Start the countdown coroutine
 		StartCoroutine(CountDown());
 	}
 
@@ -115,9 +132,19 @@ public class LevelManager : MonoBehaviour
 			//	Set the high score to the current score
 			PlayerPrefs.SetFloat("HighScore", currentScore);
 		}
-		//	Load the main menu scene
-		GameManager.Instance.LoadMainMenu();
 
+		//	Forloop to enable everything that gets disabled when game is over
+		for (int i = 0; i < disableOnGameOverArray.Length; i++)
+		{
+			disableOnGameOverArray[i].SetActive(false);
+		}
+
+		//	Set the time scaleto 0 / Pause everything.
+		Time.timeScale = 0;
+		//	Enablethe game over panel
+		gameOverPanel.SetActive(true);
+		//	Set the game over bool to true.
+		gameOver = true;
 	}
 
 	IEnumerator CountDown()
@@ -160,6 +187,20 @@ public class LevelManager : MonoBehaviour
 		}
 	}
 
+	#region Scene Loading Stuff
+	public void LoadMainMenu()
+	{
+		//	Load the main menu scene.	
+		SceneManager.LoadScene(0);
+	}
+
+	public void LoadLevel()
+	{
+		//	Load the level scene.
+		SceneManager.LoadScene(1);
+	}
+	#endregion
+
 	#region Debugging Buttons
 	public void DeleteSprayKey()
 	{
@@ -179,6 +220,12 @@ public class LevelManager : MonoBehaviour
 		int sprayCount = PlayerPrefs.GetInt("SprayCount");
 		sprayCount += 1;
 		PlayerPrefs.SetInt("SprayCount", sprayCount);
+	}
+
+	public void DeleteAllKeys()
+	{
+		PlayerPrefs.DeleteAll();
+		Debug.Log("All Keys Deleted");
 	}
 	#endregion
 }

@@ -15,7 +15,7 @@ public class SpraySpawner : MonoBehaviour
 
 	private void Spawn()
 	{
-		if(LevelManager.Instance.countDownHasFinished == false)
+		if(LevelManager.Instance.countDownHasFinished == false && LevelManager.Instance.gameOver == false)
 		{
 			return;
 		}
