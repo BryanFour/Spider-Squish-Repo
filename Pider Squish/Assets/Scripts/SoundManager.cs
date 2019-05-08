@@ -12,6 +12,7 @@ public class SoundManager : MonoBehaviour
 	private AudioSource bgAudioSource;
 	private AudioSource sprayingAudioSource;
 	private AudioSource rattleAudioSource;
+	private AudioSource dieAudioSource;
 	public AudioClip[] squishSFX;
 	public AudioClip bgMusic;
 
@@ -21,6 +22,11 @@ public class SoundManager : MonoBehaviour
 	//	Spray Can Stuff
 	public AudioClip spraySFX;
 	public AudioClip sprayRattle;
+	private float rattleVolume = 0.5f;
+
+	// Spider Die Stuff.
+	public AudioClip[] dieSFX;
+	private float dieVolume = 0.25f;
 	
 	void Awake()
 	{   // SoundManager instance Stuff.
@@ -53,9 +59,8 @@ public class SoundManager : MonoBehaviour
 		sprayingAudioSource.clip = spraySFX; //---- Probally not needed
 		//	Spray Can Rattle Stuff.
 		rattleAudioSource = gameObject.AddComponent<AudioSource>();
-
-
-
+		//	Die SFX Stuff
+		dieAudioSource = gameObject.AddComponent<AudioSource>();
 	}
 
     void Update()
@@ -74,9 +79,15 @@ public class SoundManager : MonoBehaviour
 		}
     }
 
+	public void DieSFX()
+	{
+		int randomDie = Random.Range(0, dieSFX.Length);
+		dieAudioSource.PlayOneShot(dieSFX[randomDie], dieVolume);
+	}
+
 	public void SprayRattleSFX()
 	{
-		rattleAudioSource.PlayOneShot(sprayRattle);
+		rattleAudioSource.PlayOneShot(sprayRattle, rattleVolume);
 	}
 
 	public void StartSpraySFX()

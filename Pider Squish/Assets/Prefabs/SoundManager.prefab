@@ -50,3 +50,6 @@ MonoBehaviour:
   bgMusic: {fileID: 8300000, guid: e94625e531a09ec4cab74cbf27eaf0d2, type: 3}
   spraySFX: {fileID: 8300000, guid: f9ba0c68ead9116499fd566175a2ce05, type: 3}
   sprayRattle: {fileID: 8300000, guid: ed41a116a0e2baa4bb3e39c347e8b728, type: 3}
+  dieSFX:
+  - {fileID: 8300000, guid: 23f2b00c74cff7d428ad8220cf86e20e, type: 3}
+  - {fileID: 8300000, guid: a2060e5e43928c5479ed6074160bd308, type: 3}

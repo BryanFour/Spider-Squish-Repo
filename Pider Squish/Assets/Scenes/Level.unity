@@ -3317,9 +3317,9 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.34901962, g: 0.67058825, b: 0.09019608, a: 1}
-        key1: {r: 0.3497638, g: 0.6698113, b: 0.091625154, a: 1}
-        key2: {r: 0.34901962, g: 0.67058825, b: 0.09019608, a: 0.74509805}
+        key0: {r: 0.6543116, g: 0.764151, b: 0.56590426, a: 1}
+        key1: {r: 0.654902, g: 0.76470596, b: 0.5647059, a: 1}
+        key2: {r: 0.654902, g: 0.76470596, b: 0.5647059, a: 0.74509805}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
@@ -9360,7 +9360,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: NaN, y: 0, z: NaN, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0

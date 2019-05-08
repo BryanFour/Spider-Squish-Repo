@@ -18,6 +18,7 @@ public class SprayCollision : MonoBehaviour
 
 	private void OnParticleCollision(GameObject col)
 	{
+		SoundManager.Instance.DieSFX();
 		Destroy(transform.parent.gameObject);
 	}
 }
