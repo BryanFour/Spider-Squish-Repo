@@ -45,6 +45,22 @@ public class LevelManager : MonoBehaviour
 	public GameObject gameOverPanel;
 	//	Everything that has to be disabled when game is over
 	public GameObject[] disableOnGameOverArray;
+	//	The amount of spiders squished throughout all the games played
+	private int squishedLifetimeBeforePlay;
+	//	The amount of spiders squished this game
+	private int squishedThisGame;
+	//	The amount of spiders sprayed throughout all the games played
+	private int sprayedLifetimeBeforePlay;
+	//	The amount of spiders sprayed this game
+	private int sprayedThisGame;
+	//	The Squished this game text componant.
+	public TextMeshProUGUI squishedThisGameText;
+	//	Lifetime squishes after play
+	public TextMeshProUGUI squishedLifetimeAfterPlayText;
+	//	The Squished this game text componant.
+	public TextMeshProUGUI sprayedThisGameText;
+	//	Lifetime squishes after play
+	public TextMeshProUGUI sprayedLifetimeAfterPlayText;
 
 	void Awake()
 	{   // LevelManager instance Stuff.
@@ -67,6 +83,11 @@ public class LevelManager : MonoBehaviour
 	}
 	void Start()
     {
+		//	Get the amount of spiders squished throughout all the games played before the level is played.
+		squishedLifetimeBeforePlay = PlayerPrefs.GetInt("SpidersSquished");
+		//	Get the amount of spiders sprayed throughout all the games played before the level is played.
+		sprayedLifetimeBeforePlay = PlayerPrefs.GetInt("SpidersSprayed");
+
 		// Set the time scale to 1 on runtime
 		Time.timeScale = 1;
 		
@@ -124,6 +145,26 @@ public class LevelManager : MonoBehaviour
 
 	public void GameOver()
 	{
+		#region Squished Display Stuff
+		//	Get the amount of spiders squished this game.
+		squishedThisGame = PlayerPrefs.GetInt("SpidersSquished") - squishedLifetimeBeforePlay;
+		Debug.Log("Spiders Squished this game = " + squishedThisGame);
+		//	Display the amount of spiders squished this game.
+		squishedThisGameText.text = squishedThisGame.ToString();
+		//	Get the new amount of spiders squished over lifetime.
+		squishedLifetimeAfterPlayText.text = PlayerPrefs.GetInt("SpidersSquished").ToString();
+		#endregion
+
+		#region Sprayed Display Stuff
+		//	Get the amount of spiders sprayed this game.
+		sprayedThisGame = PlayerPrefs.GetInt("SpidersSprayed") - sprayedLifetimeBeforePlay;
+		Debug.Log("Spiders sprayed this game = " + sprayedThisGame);
+		//	Display the amount of spiders sprayed this game.
+		sprayedThisGameText.text = sprayedThisGame.ToString();
+		//	Get the new amount of spiders sprayed over lifetime.
+		sprayedLifetimeAfterPlayText.text = PlayerPrefs.GetInt("SpidersSprayed").ToString();
+		#endregion
+
 		//	Create a score from the time played value.
 		currentScore = timePlayed;
 		//	If the current score is higher than the players high score...

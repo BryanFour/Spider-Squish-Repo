@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class SprayCollision : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+	//	Spiders sprayed count
+	private int spidersSprayedCount;
+
+	void Start()
     {
         
     }
@@ -18,6 +20,15 @@ public class SprayCollision : MonoBehaviour
 
 	private void OnParticleCollision(GameObject col)
 	{
+		//	get the amount of spiders sprayed.
+		spidersSprayedCount = PlayerPrefs.GetInt("SpidersSprayed", 0);
+		//	Add 1 to the spider squished count
+		spidersSprayedCount += 1;
+		//	set the player prefs SpidersSquished value to the new spidersSquishedcount.
+		PlayerPrefs.SetInt("SpidersSprayed", spidersSprayedCount);
+		Debug.Log("Spiders Sprayed = " + PlayerPrefs.GetInt("SpidersSprayed"));
+
+		//	Play the die SFX	
 		SoundManager.Instance.DieSFX();
 		Destroy(transform.parent.gameObject);
 	}

@@ -7,6 +7,9 @@ public class DestroyManager : MonoBehaviour
 {
 	public GameObject bloodSplatter;
 
+	//	Spiders squished count
+	private int spidersSquishedCount;
+
 	void Update()
     {
 		//	If we are touching and not dragging.
@@ -21,6 +24,14 @@ public class DestroyManager : MonoBehaviour
 					SoundManager.Instance.PlaySquishSFX();
 					//	Instanciate the splatterFX
 					Instantiate(bloodSplatter, gameObject.transform.position, bloodSplatter.transform.rotation);
+					//	get the amount of spiders squished.
+					spidersSquishedCount = PlayerPrefs.GetInt("SpidersSquished", 0);
+					//	Add 1 to the spider squished count
+					spidersSquishedCount += 1;
+					//	set the player prefs SpidersSquished value to the new spidersSquishedcount.
+					PlayerPrefs.SetInt("SpidersSquished", spidersSquishedCount);
+					Debug.Log("SPiders Squished = " + PlayerPrefs.GetInt("SpidersSquished"));
+					//	Destroy the object that was hit by the ray
 					Destroy(hit.transform.gameObject);
 				}
 		}
