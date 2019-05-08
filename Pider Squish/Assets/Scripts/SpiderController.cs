@@ -32,7 +32,7 @@ public class SpiderController : MonoBehaviour
 			return;
 		}
 		//	Get the spiders speed from the LevelManagers spider speed coroutine.
-		spiderSpeed = LevelManager.Instance.spiderSpeed;
+		spiderSpeed = LevelManager.Instance.spiderStartSpeed;
 		//	Set the spiders animation clips speed to the same value as the spider move speed.
 		spiderAnim["walk"].speed = spiderSpeed;
 		//	----- Move the spider a step closer to the lady bug/Target Position.

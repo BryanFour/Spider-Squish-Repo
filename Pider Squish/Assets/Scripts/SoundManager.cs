@@ -92,7 +92,6 @@ public class SoundManager : MonoBehaviour
 
 	public void StartSpraySFX()
 	{
-		Debug.Log("Spray playing");
 		sprayingAudioSource.Play();
 	}
 

@@ -4,29 +4,52 @@ using UnityEngine;
 //	Spawning enemys - https://unity3d.com/learn/tutorials/projects/survival-shooter/more-enemies
 
 public class SpiderSpawner : MonoBehaviour
-{
-	//	How long to wait before the first spider is spawned
-	private float spawnTime = 0.5f;
+{ 
 	public GameObject[] spiders;
 	public Transform[] spawnPoints;
+	private float spawnRate = 1.5f;
 
-	void Start()
+	private void Start()
 	{
-		float randomSpawnTime = Random.Range(0.8f, 1.5f);
-		InvokeRepeating("Spawn", spawnTime, randomSpawnTime);
+		StartCoroutine(SpawnSpiders());
+		StartCoroutine(DecreaseSpawnRate());
 	}
 
-	void Spawn()
+	IEnumerator DecreaseSpawnRate()
 	{
-		if(LevelManager.Instance.countDownHasFinished == false)
+		if(spawnRate > 0.5f && LevelManager.Instance.countDownHasFinished == true)
 		{
-			return;
+			yield return new WaitForSecondsRealtime(15);
+			spawnRate = spawnRate - 0.25f;
+			StartCoroutine(DecreaseSpawnRate());
 		}
-		// Find a random index between zero and one less than the number of spawn points.
-		int spawnPointIndex = Random.Range(0, spawnPoints.Length);
-		// Choose a random spider.
-		int randomSpider = Random.Range(0, spiders.Length);
-		// Create an instance of the enemy prefab at the randomly selected spawn point's position and rotation.
-		Instantiate(spiders[randomSpider], spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
+		else if (LevelManager.Instance.countDownHasFinished == false)
+		{
+			yield return new WaitForSecondsRealtime(0.5f);
+			StartCoroutine(DecreaseSpawnRate());
+		}
+	}
+
+	IEnumerator SpawnSpiders()
+	{
+		if(LevelManager.Instance.countDownHasFinished == true)
+		{
+			// Choose a random spider.
+			int randomSpider = Random.Range(0, spiders.Length);
+			// Find a random index between zero and one less than the number of spawn points.
+			int randomSpawnPoint = Random.Range(0, spawnPoints.Length);
+			//
+			Instantiate(spiders[randomSpider], spawnPoints[randomSpawnPoint].position, spawnPoints[randomSpawnPoint].rotation);
+			//
+			yield return new WaitForSecondsRealtime(spawnRate);
+			//
+			StartCoroutine(SpawnSpiders());
+		}
+		else if (LevelManager.Instance.countDownHasFinished == false)
+		{
+			yield return new WaitForSecondsRealtime(1);
+			StartCoroutine(SpawnSpiders());
+		}
+			
 	}
 }
