@@ -10130,7 +10130,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 5.0842705e+31, y: 4.734058e+22, z: 7.564175e+28, w: 6.653194e-33}
+  m_BoundingSphereOverride: {x: 2.9107383e-11, y: 3.552715e-15, z: 3.85186e-34, w: 2048}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -10186,7 +10186,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -5.700012, y: -6.100006}
+  m_AnchoredPosition: {x: -5.700012, y: -6.0999756}
   m_SizeDelta: {x: 91.54, y: 79.68}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &728545496
@@ -12081,7 +12081,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1034059871
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16243,7 +16243,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1550220694
 RectTransform:
   m_ObjectHideFlags: 0

@@ -11,8 +11,10 @@ public class LevelManager : MonoBehaviour
 	public static LevelManager Instance { get; set; }
 	// GameManager instance Stuff End.
 
-	//	The countdown aray --- TODO Change how this works.
-	//public GameObject[] countDownArray;
+	//	Spray spawning stuff
+	private float timeSinceLastSpraySpawn; //--------------- delete if not needed
+
+	//	The count down text componant.
 	public TextMeshProUGUI countDownText;
 
 	//	Spray Count Stuff.
@@ -135,6 +137,7 @@ public class LevelManager : MonoBehaviour
 		string seconds = (timePlayed % 60).ToString("00.00"); // Used to have the timer show in seconds and minutes rather that just seconds.
 		//	Display the time.
 		timerText.text = minutes + ":" + seconds;
+
 	}
 
 	public void UpdateSprayCount()
@@ -200,10 +203,12 @@ public class LevelManager : MonoBehaviour
 		yield return new WaitForSecondsRealtime(1);
 		countDownText.gameObject.SetActive(false);
 
-		//	Store the Time.time value when gameplay started
+		//	Store the Time.time value when gameplay started after the countdown finishes.
 		gamePlayHasStarted = Time.time;
-		//	Start the spider speed increase coroutine.
+		//	Start the spider speed increase coroutine after the countdown finishes.
 		StartCoroutine(SpiderSpeed());
+		//	Start the SprayLastSpawned coroutine after the countdown finishes.
+		StartCoroutine(SprayLastSpawned());
 	}
 
 	IEnumerator SpiderSpeed()
@@ -212,13 +217,24 @@ public class LevelManager : MonoBehaviour
 		{
 			yield return new WaitForSecondsRealtime(15);
 			spiderSpeed = spiderSpeed + 0.5f;
-			Debug.Log("Spider speed increased");
 			StartCoroutine(SpiderSpeed()); ;
 		}
 		else
 		{
-			Debug.Log("Max speed reached");
+			//Debug.Log("Max speed reached");
 		}
+	}
+
+	IEnumerator SprayLastSpawned()
+	{
+		yield return new WaitForSecondsRealtime(1);
+		float sprayLastSpawnedValue = PlayerPrefs.GetFloat("SprayLastSpawned", 0);
+		//	Add the time played to the the player prefs "SprayLastSpawned value".
+		//float newSprayLastSpawnedValue = sprayLastSpawnedValue + timePlayed;
+		float newSprayLastSpawnedValue = sprayLastSpawnedValue + 1;
+		//	Change the player prefs "SprayLastSpawned" value to the newSprayLastSpawnedValue
+		PlayerPrefs.SetFloat("SprayLastSpawned", newSprayLastSpawnedValue);
+		StartCoroutine(SprayLastSpawned());
 	}
 
 	#region Scene Loading Stuff
