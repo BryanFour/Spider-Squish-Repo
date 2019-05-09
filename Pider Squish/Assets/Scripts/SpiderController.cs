@@ -34,7 +34,7 @@ public class SpiderController : MonoBehaviour
 			return;
 		}
 		//	Get the spiders speed from the LevelManagers spider speed coroutine.
-		spiderSpeed = LevelManager.Instance.spiderStartSpeed;
+		spiderSpeed = LevelManager.Instance.spiderSpeed;
 		//	Set the spiders animation clips speed to the same value as the spider move speed.
 		spiderAnim["walk"].speed = spiderSpeed;
 		//	----- Move the spider a step closer to the lady bug/Target Position.
@@ -68,9 +68,9 @@ public class SpiderController : MonoBehaviour
 			spidersSquishedCount += 1;
 			//	set the player prefs SpidersSquished value to the new spidersSquishedcount.
 			PlayerPrefs.SetInt("SpidersSquished", spidersSquishedCount);
-			Debug.Log("SPiders Squished = " + PlayerPrefs.GetInt("SpidersSquished"));
 			//	Destroy the object that was hit by the ray
 			Destroy(gameObject);
 		}
 	}
+	
 }

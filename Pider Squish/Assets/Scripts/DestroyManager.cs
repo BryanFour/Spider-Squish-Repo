@@ -23,7 +23,7 @@ public class DestroyManager : MonoBehaviour
 					//	Play the SquishSFX/
 					SoundManager.Instance.PlaySquishSFX();
 					//	Instanciate the splatterFX
-					Instantiate(bloodSplatter, gameObject.transform.position, bloodSplatter.transform.rotation);
+					Instantiate(bloodSplatter, hit.transform.position, bloodSplatter.transform.rotation);
 					//	get the amount of spiders squished.
 					spidersSquishedCount = PlayerPrefs.GetInt("SpidersSquished", 0);
 					//	Add 1 to the spider squished count

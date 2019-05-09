@@ -20,6 +20,9 @@ TextureImporter:
   - first:
       213: -2574449355943416012
     second: Restart_Button
+  - first:
+      213: 1723543163705878722
+    second: Blank_Square_Button
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -245,6 +248,27 @@ TextureImporter:
       bones: []
       spriteID: e6f8c3f853aa72d48a3848e09ecc4c59
       internalID: -2574449355943416012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blank_Square_Button
+      rect:
+        serializedVersion: 2
+        x: 967
+        y: 2180
+        width: 185
+        height: 189
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2a1a44ba3187db44822d53cb75a03f1
+      internalID: 1723543163705878722
       vertices: []
       indices: 
       edges: []

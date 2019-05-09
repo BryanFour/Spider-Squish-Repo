@@ -26,7 +26,6 @@ public class SprayCollision : MonoBehaviour
 		spidersSprayedCount += 1;
 		//	set the player prefs SpidersSquished value to the new spidersSquishedcount.
 		PlayerPrefs.SetInt("SpidersSprayed", spidersSprayedCount);
-		Debug.Log("Spiders Sprayed = " + PlayerPrefs.GetInt("SpidersSprayed"));
 
 		//	Play the die SFX	
 		SoundManager.Instance.DieSFX();

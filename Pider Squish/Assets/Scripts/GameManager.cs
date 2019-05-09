@@ -42,7 +42,6 @@ public class GameManager : MonoBehaviour
 		if(PlayerPrefs.HasKey("HasPlayedBefore") == true)
 		{
 			hasPlayedBefore = true;
-			Debug.Log("Player has played before");
 		}
 		//	If the player hasnt played before
 		else if(PlayerPrefs.HasKey("HasPlayedBefore") == false)
@@ -50,7 +49,6 @@ public class GameManager : MonoBehaviour
 			hasPlayedBefore = false;
 			//	Run the FirstTimePlaying method.
 			FirstTimePlaying();
-			Debug.Log("Player has not played before");
 		}
 	}
 

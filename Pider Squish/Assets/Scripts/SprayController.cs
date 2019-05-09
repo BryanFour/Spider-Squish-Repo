@@ -11,19 +11,23 @@ public class SprayController : MonoBehaviour
 	//	Bool to stop players activating can while acan is already active
 	public bool canActive = false;
 	// How long we can spray for
-	private float lengthOfSpray = 10; // ----------- I dont seem to be using this.
+	private float lengthOfSpray = 10;
 	//	How long the spray cooldown is.
-	private float sprayCoolDownLength = 15;
+	private float sprayCoolDownLength = 5;
 	//	where we are in the cooldown
-	private int coolDownValue = 15;
+	private int coolDownValue = 5;
 	//	The poit in time that we started the cooldown
 	private float coolDownStartTime;
 	//	A bool to tell if we are on cooldown or not.
 	private bool onCoolDown;
 	//	Cans children Plus the spray trail gameobject
 	public Transform[] childrenArray;
-	// CoolDown text componant
-	public TextMeshProUGUI coolDownText;
+	//	CoolDown title Text componant
+	public TextMeshProUGUI coolDownTitleText;
+	//	CoolDown value text componant
+	public TextMeshProUGUI coolDownValueText;
+	//	Spray Button Text
+	public TextMeshProUGUI sprayButtonText;
 	
 
     void Start()
@@ -35,8 +39,14 @@ public class SprayController : MonoBehaviour
 		}
 		//	Trick the app into letting us use the spray immediately
 		coolDownStartTime = Time.time - sprayCoolDownLength;
-		// Disable the cooldown text on runtime.
-		coolDownText.gameObject.SetActive(false);
+
+		//	----- Spray Button Text Stuff.
+		//	Enable the spray button text at runtime.
+		sprayButtonText.gameObject.SetActive(true);
+		//	Disable the cooldown title text on runtime.
+		coolDownTitleText.gameObject.SetActive(false);
+		//	Disable the cooldown value text on runtime.
+		coolDownValueText.gameObject.SetActive(false);
 
 		//	Move With Mouse Stuff.
 		Vector3 toObjectVevtor = transform.position - Camera.main.transform.position;
@@ -90,8 +100,14 @@ public class SprayController : MonoBehaviour
 		{
 			childrenArray[i].gameObject.SetActive(false);
 		}
-		//	Enable the cooldowntext componant
-		coolDownText.gameObject.SetActive(true);
+		
+		//	Disable the spray button text.
+		sprayButtonText.gameObject.SetActive(false);
+		//	Enable the cooldown title text.
+		coolDownTitleText.gameObject.SetActive(true);
+		//	Enable the cooldown value text.
+		coolDownValueText.gameObject.SetActive(true);
+		
 		//	Start the cooldown coroutine.
 		StartCoroutine(CoolDown());
 	}
@@ -100,17 +116,23 @@ public class SprayController : MonoBehaviour
 	{
 		if(coolDownValue >= 1)
 		{
-			coolDownText.text = coolDownValue.ToString();
+			//	Display the cooldown value.
+			coolDownValueText.text = coolDownValue.ToString();
 			coolDownValue -= 1;
 			yield return new WaitForSecondsRealtime(1);
 			StartCoroutine(CoolDown());
 		}
 		else
 		{
-			//	Disable the cooldowntext componant
-			coolDownText.gameObject.SetActive(false);
-			//	Set the cooldownvalue to 15
-			coolDownValue = 15;
+			//	Enable the spray button text.
+			sprayButtonText.gameObject.SetActive(true);
+			//	Disable the cooldown title text.
+			coolDownTitleText.gameObject.SetActive(false);
+			//	Disable the cooldown value text.
+			coolDownValueText.gameObject.SetActive(false);
+			
+			//	Set the cooldownvalue to 5
+			coolDownValue = 5;
 			//	Set the cooldown bool to false
 			onCoolDown = false;
 		}

@@ -12,7 +12,8 @@ public class LevelManager : MonoBehaviour
 	// GameManager instance Stuff End.
 
 	//	The countdown aray --- TODO Change how this works.
-	public GameObject[] countDownArray;
+	//public GameObject[] countDownArray;
+	public TextMeshProUGUI countDownText;
 
 	//	Spray Count Stuff.
 	public TextMeshProUGUI sprayCountText;
@@ -36,8 +37,10 @@ public class LevelManager : MonoBehaviour
 	//	The players current score (How long the player lasted with dieing).
 	public float currentScore;
 
-	//	The spiders speed to be increased in the coroutine.
-	public float spiderStartSpeed = 1.5f;
+	//	----- The spiders speed to be increased in the coroutine.
+	//	The speed the spiders start with.
+	public float spiderSpeed = 1f;
+	//	The spiders maximum speed.
 	public float spiderMaxSpeed = 2f;
 
 	//	Game Over Stuff
@@ -99,12 +102,10 @@ public class LevelManager : MonoBehaviour
 		
 		//	Find out how low the app has been running for, used in later calculations.
 		timeSinceStart = Time.time;
-		
-		//	For loop to disable all elements in the countDownArray.
-		for(int i = 0; i < countDownArray.Length; i++)
-		{
-			countDownArray[i].SetActive(false);
-		}
+
+		//	Disable the count down text at runtime.
+		countDownText.gameObject.SetActive(false);
+
 		//	Forloop to enable everything that gets disabled when game is over
 		for (int i = 0; i < disableOnGameOverArray.Length; i++)
 		{
@@ -148,7 +149,6 @@ public class LevelManager : MonoBehaviour
 		#region Squished Display Stuff
 		//	Get the amount of spiders squished this game.
 		squishedThisGame = PlayerPrefs.GetInt("SpidersSquished") - squishedLifetimeBeforePlay;
-		Debug.Log("Spiders Squished this game = " + squishedThisGame);
 		//	Display the amount of spiders squished this game.
 		squishedThisGameText.text = squishedThisGame.ToString();
 		//	Get the new amount of spiders squished over lifetime.
@@ -158,7 +158,6 @@ public class LevelManager : MonoBehaviour
 		#region Sprayed Display Stuff
 		//	Get the amount of spiders sprayed this game.
 		sprayedThisGame = PlayerPrefs.GetInt("SpidersSprayed") - sprayedLifetimeBeforePlay;
-		Debug.Log("Spiders sprayed this game = " + sprayedThisGame);
 		//	Display the amount of spiders sprayed this game.
 		sprayedThisGameText.text = sprayedThisGame.ToString();
 		//	Get the new amount of spiders sprayed over lifetime.
@@ -189,23 +188,17 @@ public class LevelManager : MonoBehaviour
 	}
 
 	IEnumerator CountDown()
-	{   //	Enable/Disable elemets from the Count down array.
-		countDownArray[0].SetActive(true);
-		//Debug.Log("3");
-		yield return new WaitForSecondsRealtime(.95f);
-		countDownArray[0].SetActive(false);
-		countDownArray[1].SetActive(true);
-		//Debug.Log("2");
-		yield return new WaitForSecondsRealtime(.95f);
-		countDownArray[1].SetActive(false);
-		countDownArray[2].SetActive(true);
-		//Debug.Log("1");
-		yield return new WaitForSecondsRealtime(.95f);
-		countDownArray[2].SetActive(false);
-		countDownArray[3].SetActive(true);
-		//Debug.Log("GO");
-		yield return new WaitForSecondsRealtime(.95f);
-		countDownArray[3].SetActive(false);
+	{   
+		countDownText.gameObject.SetActive(true);
+		countDownText.text = 3.ToString();
+		yield return new WaitForSecondsRealtime(1);
+		countDownText.text = 2.ToString();
+		yield return new WaitForSecondsRealtime(1);
+		countDownText.text = 1.ToString();
+		yield return new WaitForSecondsRealtime(1);
+		countDownText.text = "GO";
+		yield return new WaitForSecondsRealtime(1);
+		countDownText.gameObject.SetActive(false);
 
 		//	Store the Time.time value when gameplay started
 		gamePlayHasStarted = Time.time;
@@ -215,10 +208,10 @@ public class LevelManager : MonoBehaviour
 
 	IEnumerator SpiderSpeed()
 	{
-		if(spiderStartSpeed < spiderMaxSpeed)
+		if(spiderSpeed < spiderMaxSpeed)
 		{
 			yield return new WaitForSecondsRealtime(15);
-			spiderStartSpeed = spiderStartSpeed + 0.5f;
+			spiderSpeed = spiderSpeed + 0.5f;
 			Debug.Log("Spider speed increased");
 			StartCoroutine(SpiderSpeed()); ;
 		}

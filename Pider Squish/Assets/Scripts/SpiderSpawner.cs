@@ -7,7 +7,7 @@ public class SpiderSpawner : MonoBehaviour
 { 
 	public GameObject[] spiders;
 	public Transform[] spawnPoints;
-	private float spawnRate = 1.5f;
+	private float spawnRate = 1f;
 
 	private void Start()
 	{
