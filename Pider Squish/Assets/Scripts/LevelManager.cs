@@ -170,6 +170,8 @@ public class LevelManager : MonoBehaviour
 		tutorialPanel.SetActive(false);
 		//	Create a key to tell if the tutorial has been opened before
 		PlayerPrefs.SetString("HasSprayedBefore", "Yes");
+		//	Play the button SFX
+		SoundManager.Instance.ButtonSFX();
 	}
 	#endregion
 
@@ -220,12 +222,16 @@ public class LevelManager : MonoBehaviour
 	{   
 		countDownText.gameObject.SetActive(true);
 		countDownText.text = 3.ToString();
+		SoundManager.Instance.PlayCountDownSFX();
 		yield return new WaitForSecondsRealtime(1);
 		countDownText.text = 2.ToString();
+		SoundManager.Instance.PlayCountDownSFX();
 		yield return new WaitForSecondsRealtime(1);
 		countDownText.text = 1.ToString();
+		SoundManager.Instance.PlayCountDownSFX();
 		yield return new WaitForSecondsRealtime(1);
 		countDownText.text = "GO";
+		SoundManager.Instance.PlayCountDownSFX();
 		yield return new WaitForSecondsRealtime(1);
 		countDownText.gameObject.SetActive(false);
 
@@ -276,13 +282,16 @@ public class LevelManager : MonoBehaviour
 
 	#region Scene Loading Stuff
 	public void LoadMainMenu()
-	{
+	{   //	Play the button SFX
+		SoundManager.Instance.ButtonSFX();
 		//	Load the main menu scene.	
 		SceneManager.LoadScene(0);
 	}
 
 	public void LoadLevel()
 	{
+		//	Play the button SFX
+		SoundManager.Instance.ButtonSFX();
 		//	Load the level scene.
 		SceneManager.LoadScene(1);
 	}

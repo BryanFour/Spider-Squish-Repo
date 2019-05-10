@@ -92,13 +92,17 @@ public class GameManager : MonoBehaviour
 	}
 
 	public void LoadMainMenu()
-	{	
+	{
+		//	Play the button SFX
+		SoundManager.Instance.ButtonSFX();
 		//	Load the main menu scene.	
 		SceneManager.LoadScene(0);
 	}
 
 	public void LoadLevel()
 	{
+		//	Play the button SFX
+		SoundManager.Instance.ButtonSFX();
 		//	Load the level scene.
 		SceneManager.LoadScene(1);
 	}

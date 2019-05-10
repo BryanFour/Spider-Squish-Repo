@@ -81,6 +81,9 @@ public class SprayController : MonoBehaviour
 			hasSprayedBefore = false;
 		}
 		#endregion
+
+		// Play the button SFX
+		SoundManager.Instance.ButtonSFX();
 		//	If the spray can is not active and we have atleast 1 in our inventory and the pre start countdown has finished and we are not on cooldown.
 		//--- can active bool Probally not need now we have a onCoolDown bool
 		if (!canActive && PlayerPrefs.GetInt("SprayCount") > 0 && LevelManager.Instance.countDownHasFinished == true && onCoolDown == false)

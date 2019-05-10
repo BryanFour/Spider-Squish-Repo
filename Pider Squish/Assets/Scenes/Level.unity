@@ -7527,7 +7527,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &298517132
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10519,7 +10519,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: -0.00069075916, z: -3.214549e+37, w: 6.910535e+26}
+  m_BoundingSphereOverride: {x: -3.11e-43, y: 9.1e-43, z: 6e-45, w: 1.05e-43}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -15858,8 +15858,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 27.78, y: -41.46}
+  m_SizeDelta: {x: 215.56, y: 112.91}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1420398411
 MonoBehaviour:
@@ -15906,6 +15906,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1607676405}
         m_MethodName: CloseSprayTutorial
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7910899457514412118}
+        m_MethodName: ActivateCan
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -20968,7 +20979,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2019649672
 RectTransform:
   m_ObjectHideFlags: 0
@@ -22145,6 +22156,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: GameOverCollider
       objectReference: {fileID: 0}
+    - target: {fileID: 6482190221494675968, guid: 3d6149af6de12d04fb623afe19329354,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: cb38b825b844a2848b04d6befd88e52a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d6149af6de12d04fb623afe19329354, type: 3}
 --- !u!1001 &6234658824398113566

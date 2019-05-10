@@ -13,6 +13,11 @@ public class SoundManager : MonoBehaviour
 	private AudioSource sprayingAudioSource;
 	private AudioSource rattleAudioSource;
 	private AudioSource dieAudioSource;
+	private AudioSource buttonAudioSource;
+	private AudioSource countDownAudioSource;
+
+	public AudioClip countDownBeep;
+	public AudioClip buttonSFX;
 	public AudioClip[] squishSFX;
 	public AudioClip bgMusic;
 
@@ -61,6 +66,10 @@ public class SoundManager : MonoBehaviour
 		rattleAudioSource = gameObject.AddComponent<AudioSource>();
 		//	Die SFX Stuff
 		dieAudioSource = gameObject.AddComponent<AudioSource>();
+		//	Button SFX Stuff
+		buttonAudioSource = gameObject.AddComponent<AudioSource>();
+		//	CountDown Beep
+		countDownAudioSource = gameObject.AddComponent<AudioSource>();
 	}
 
     void Update()
@@ -78,28 +87,34 @@ public class SoundManager : MonoBehaviour
 			StopBgMusic();
 		}
     }
-
+	#region Die SFX
 	public void DieSFX()
 	{
 		int randomDie = Random.Range(0, dieSFX.Length);
 		dieAudioSource.PlayOneShot(dieSFX[randomDie], dieVolume);
 	}
+	#endregion
 
+	#region Rattle SFX
 	public void SprayRattleSFX()
 	{
 		rattleAudioSource.PlayOneShot(sprayRattle, rattleVolume);
 	}
+	#endregion
 
+	#region Spray SFX
 	public void StartSpraySFX()
 	{
 		sprayingAudioSource.Play();
 	}
-
+	
 	public void StopSpraySFX()
 	{
 		sprayingAudioSource.Stop();
 	}
+	#endregion
 
+	#region BackGround SFX
 	private void StartBgMusic()
 	{
 		bgAudioSource.Play();
@@ -111,7 +126,9 @@ public class SoundManager : MonoBehaviour
 		bgAudioSource.Stop();
 		bgMusicIsPlaying = false;
 	}
+	#endregion
 
+	#region Squish SFX
 	public void PlaySquishSFX()
 	{
 		//	Get a random Squish SFX.
@@ -120,4 +137,19 @@ public class SoundManager : MonoBehaviour
 		squishAudioSource.PlayOneShot(squishSFX[randomSFX]);
 		
 	}
+	#endregion
+
+	#region Button SFX
+	public void ButtonSFX()
+	{
+		buttonAudioSource.PlayOneShot(buttonSFX);
+	}
+	#endregion
+
+	#region
+	public void PlayCountDownSFX()
+	{
+		countDownAudioSource.PlayOneShot(countDownBeep, 0.5f);
+	}
+	#endregion
 }

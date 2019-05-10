@@ -43,6 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e235701e88b5ad54eade936b191a6dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  countDownBeep: {fileID: 8300000, guid: 69d44dc1045f77a46b6ce947b826bfad, type: 3}
+  buttonSFX: {fileID: 8300000, guid: eac14d8d1b959c8428f419e66e366700, type: 3}
   squishSFX:
   - {fileID: 8300000, guid: 42c8e55a1deab6d4bbda84b333848045, type: 3}
   - {fileID: 8300000, guid: dd7324217c03f5a4e82b5098f5ce8db4, type: 3}
