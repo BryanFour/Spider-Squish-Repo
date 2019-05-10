@@ -44,8 +44,12 @@ public class LevelManager : MonoBehaviour
 	public float spiderSpeed = 1f;
 	//	The spiders maximum speed.
 	public float spiderMaxSpeed = 2f;
+	
+	//	----- Tutorial stuff
+	//	Get access to the tutorial game object.
+	public GameObject tutorialPanel;
 
-	//	Game Over Stuff
+	//	----- Game Over Stuff
 	public bool gameOver = false;
 	public GameObject gameOverPanel;
 	//	Everything that has to be disabled when game is over
@@ -95,7 +99,10 @@ public class LevelManager : MonoBehaviour
 
 		// Set the time scale to 1 on runtime
 		Time.timeScale = 1;
-		
+
+		// Disable the tutorial panal at runtime
+		tutorialPanel.SetActive(false);
+
 		//	Disable the game over panel at runtime.
 		gameOverPanel.SetActive(false);
 		
@@ -118,7 +125,8 @@ public class LevelManager : MonoBehaviour
 	}
 
     void Update()
-    {
+	{
+		//Debug.Log(Time.timeScale);
 		//	Timer and time formatting stuff.
 		//	Exit out of this method if the pre start countdown hasnt finished
 		if (Time.time - timeSinceStart < PRE_START_COUNTDOWN)
@@ -146,6 +154,24 @@ public class LevelManager : MonoBehaviour
 		sprayCountText.text = PlayerPrefs.GetInt("SprayCount", 0).ToString();
 
 	}
+	#region Open / Close Tutorial
+	//	Open the tutorial
+	public void OpenSprayTutorial()
+	{
+		Time.timeScale = 0;
+		//	Enable the tutorial panel
+		tutorialPanel.SetActive(true);
+	}
+
+	public void CloseSprayTutorial()
+	{
+		Time.timeScale = 1;
+		//	Disable the tutorial panel
+		tutorialPanel.SetActive(false);
+		//	Create a key to tell if the tutorial has been opened before
+		PlayerPrefs.SetString("HasSprayedBefore", "Yes");
+	}
+	#endregion
 
 	public void GameOver()
 	{
@@ -217,24 +243,35 @@ public class LevelManager : MonoBehaviour
 		{
 			yield return new WaitForSecondsRealtime(15);
 			spiderSpeed = spiderSpeed + 0.5f;
-			StartCoroutine(SpiderSpeed()); ;
+			Debug.Log("speed inscreased");
+			StartCoroutine(SpiderSpeed()); 
 		}
-		else
+		else if(Time.timeScale == 0)
 		{
-			//Debug.Log("Max speed reached");
+			Debug.Log("Max Speed Reached");
 		}
 	}
 
 	IEnumerator SprayLastSpawned()
 	{
-		yield return new WaitForSecondsRealtime(1);
-		float sprayLastSpawnedValue = PlayerPrefs.GetFloat("SprayLastSpawned", 0);
-		//	Add the time played to the the player prefs "SprayLastSpawned value".
-		//float newSprayLastSpawnedValue = sprayLastSpawnedValue + timePlayed;
-		float newSprayLastSpawnedValue = sprayLastSpawnedValue + 1;
-		//	Change the player prefs "SprayLastSpawned" value to the newSprayLastSpawnedValue
-		PlayerPrefs.SetFloat("SprayLastSpawned", newSprayLastSpawnedValue);
-		StartCoroutine(SprayLastSpawned());
+		if(Time.timeScale == 1)
+		{
+			yield return new WaitForSecondsRealtime(1);
+			float sprayLastSpawnedValue = PlayerPrefs.GetFloat("SprayLastSpawned", 0);
+			//	Add the time played to the the player prefs "SprayLastSpawned value".
+			//float newSprayLastSpawnedValue = sprayLastSpawnedValue + timePlayed;
+			float newSprayLastSpawnedValue = sprayLastSpawnedValue + 1;
+			//	Change the player prefs "SprayLastSpawned" value to the newSprayLastSpawnedValue
+			PlayerPrefs.SetFloat("SprayLastSpawned", newSprayLastSpawnedValue);
+			//Debug.Log(newSprayLastSpawnedValue);
+			StartCoroutine(SprayLastSpawned());
+		}
+		else
+		{
+			yield return new WaitForSecondsRealtime(1);
+			StartCoroutine(SprayLastSpawned());
+		}
+		
 	}
 
 	#region Scene Loading Stuff
@@ -257,6 +294,12 @@ public class LevelManager : MonoBehaviour
 		PlayerPrefs.DeleteKey("SprayCount");
 		//	Set the spray count text to the player prefs spray count value.
 		sprayCountText.text = PlayerPrefs.GetInt("SprayCount", 0).ToString();
+	}
+
+	public void DeleteTutorialKey()
+	{
+		PlayerPrefs.DeleteKey("HasSprayedBefore");
+		Debug.Log("Tutorial Key Deleted");
 	}
 
 	public void DeleteHSKey()

@@ -880,7 +880,7 @@ GameObject:
   - component: {fileID: 735756257}
   - component: {fileID: 735756256}
   m_Layer: 5
-  m_Name: HighScore_Easy_Value
+  m_Name: HighScoreValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

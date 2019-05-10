@@ -9,7 +9,7 @@ public class SpraySpawner : MonoBehaviour
 	public Transform[] spawnPoints;
 
 	//	Number of seconds between spray spawns
-	private float spraySpawnInterval = 300;
+	private float spraySpawnInterval = 5;
 
 
 	void Start()
@@ -22,7 +22,8 @@ public class SpraySpawner : MonoBehaviour
 
 	private void SpawnSpray()
 	{
-		if(LevelManager.Instance.countDownHasFinished == false && LevelManager.Instance.gameOver == false)
+		//if(LevelManager.Instance.countDownHasFinished == false && LevelManager.Instance.gameOver == false)
+		if(LevelManager.Instance.countDownHasFinished == false && Time.timeScale == 1)
 		{
 			return;
 		}
@@ -39,7 +40,6 @@ public class SpraySpawner : MonoBehaviour
 	IEnumerator TimeToSpawnChecker()
 	{
 		yield return new WaitForSecondsRealtime(1);
-		Debug.Log("Time since last spray was spawned is " + PlayerPrefs.GetFloat("SprayLastSpawned"));
 		if (PlayerPrefs.GetFloat("SprayLastSpawned", 0) >= spraySpawnInterval)
 		{
 			SpawnSpray();

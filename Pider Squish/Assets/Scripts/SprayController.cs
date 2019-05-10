@@ -28,10 +28,15 @@ public class SprayController : MonoBehaviour
 	public TextMeshProUGUI coolDownValueText;
 	//	Spray Button Text
 	public TextMeshProUGUI sprayButtonText;
-	
 
-    void Start()
+
+	//	Has the player sprayed before.
+	private bool hasSprayedBefore = false;	
+
+	void Start()
     {
+		
+
 		// Disable all the can parts
 		for (int i = 0; i < childrenArray.Length; i++)
 		{
@@ -63,12 +68,26 @@ public class SprayController : MonoBehaviour
 	}
 
 	public void ActivateCan()
-	{   //	If the spray can is not active and we have atleast 1 in our inventory and the pre start countdown has finished and we are not on cooldown.
+	{
+		#region Has Sprayed Before
+		//	If the player has sprayed before.	
+		if (PlayerPrefs.HasKey("HasSprayedBefore") == true)
+		{
+			hasSprayedBefore = true;
+		}
+		//	If the player hasnt sprayed before
+		else if (PlayerPrefs.HasKey("HasSprayedBefore") == false)
+		{
+			hasSprayedBefore = false;
+		}
+		#endregion
+		//	If the spray can is not active and we have atleast 1 in our inventory and the pre start countdown has finished and we are not on cooldown.
 		//--- can active bool Probally not need now we have a onCoolDown bool
 		if (!canActive && PlayerPrefs.GetInt("SprayCount") > 0 && LevelManager.Instance.countDownHasFinished == true && onCoolDown == false)
 		{
-			if (sprayCoolDownLength < Time.time - coolDownStartTime)
+			if (sprayCoolDownLength < Time.time - coolDownStartTime && hasSprayedBefore == true)
 			{
+				Debug.Log("PLayer has sprayed before");
 				// Enable all the can parts
 				for (int i = 0; i < childrenArray.Length; i++)
 				{
@@ -84,6 +103,11 @@ public class SprayController : MonoBehaviour
 				//	Start the spray can SFX.
 				SoundManager.Instance.StartSpraySFX();
 				StartCoroutine(SprayDuration());
+			}
+			else
+			{
+				// call the first time spraying method from the levelmanager
+				LevelManager.Instance.OpenSprayTutorial();
 			}
 		}
 	}
@@ -137,4 +161,6 @@ public class SprayController : MonoBehaviour
 			onCoolDown = false;
 		}
 	}
+
+	
 }

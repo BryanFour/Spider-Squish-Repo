@@ -459,7 +459,9 @@ MonoBehaviour:
   - {fileID: 5129445709653121049}
   - {fileID: 7030514521949762451}
   - {fileID: 0}
-  coolDownText: {fileID: 0}
+  coolDownTitleText: {fileID: 0}
+  coolDownValueText: {fileID: 0}
+  sprayButtonText: {fileID: 0}
 --- !u!1 &8398211048387610830
 GameObject:
   m_ObjectHideFlags: 0

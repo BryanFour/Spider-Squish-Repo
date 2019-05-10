@@ -17,13 +17,13 @@ public class SpiderSpawner : MonoBehaviour
 
 	IEnumerator DecreaseSpawnRate()
 	{
-		if(spawnRate > 0.5f && LevelManager.Instance.countDownHasFinished == true)
+		if(spawnRate > 0.5f && LevelManager.Instance.countDownHasFinished == true && Time.timeScale == 1)
 		{
 			yield return new WaitForSecondsRealtime(15);
 			spawnRate = spawnRate - 0.25f;
 			StartCoroutine(DecreaseSpawnRate());
 		}
-		else if (LevelManager.Instance.countDownHasFinished == false)
+		else if (LevelManager.Instance.countDownHasFinished == false || Time.timeScale == 0)
 		{
 			yield return new WaitForSecondsRealtime(0.5f);
 			StartCoroutine(DecreaseSpawnRate());
@@ -32,7 +32,8 @@ public class SpiderSpawner : MonoBehaviour
 
 	IEnumerator SpawnSpiders()
 	{
-		if(LevelManager.Instance.countDownHasFinished == true && LevelManager.Instance.gameOver == false)
+		//if(LevelManager.Instance.countDownHasFinished == true && LevelManager.Instance.gameOver == false)
+		if (LevelManager.Instance.countDownHasFinished == true && Time.timeScale == 1)
 		{
 			// Choose a random spider.
 			int randomSpider = Random.Range(0, spiders.Length);
@@ -45,7 +46,7 @@ public class SpiderSpawner : MonoBehaviour
 			//
 			StartCoroutine(SpawnSpiders());
 		}
-		else if (LevelManager.Instance.countDownHasFinished == false)
+		else if (LevelManager.Instance.countDownHasFinished == false || Time.timeScale == 0)
 		{
 			yield return new WaitForSecondsRealtime(1);
 			StartCoroutine(SpawnSpiders());

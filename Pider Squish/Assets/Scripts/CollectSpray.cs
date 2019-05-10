@@ -8,6 +8,8 @@ public class CollectSpray : MonoBehaviour
 	private int sprayCount;
 	//	
 	public float fallSpeed = 5;
+	//	the destroy cans not collected  Z position
+	public float destroyPosition;
 
 	void Start()
     {
@@ -38,6 +40,11 @@ public class CollectSpray : MonoBehaviour
 					//	Destroy the collected spray can.
 					Destroy(hit.transform.gameObject);
 				}
+		}
+		// Destroy cans that are not collected.
+		if(transform.position.z <= -10)
+		{
+			Destroy(gameObject);
 		}
 	}
 

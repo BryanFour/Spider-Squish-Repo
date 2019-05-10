@@ -12,7 +12,9 @@ public class GameManager : MonoBehaviour
 	// GameManager instance Stuff End.
 
 	//	Is this the first time playing the game.
-	public bool hasPlayedBefore = false;	//--------- Remove this if its not needed.
+	public bool hasPlayedBefore = false;    //--------- Remove this if its not needed.
+
+	
 
 	private GameObject highScoreText;
 
@@ -37,9 +39,10 @@ public class GameManager : MonoBehaviour
 	}
 
 	private void Start()
-	{	
+	{
+		#region Has Played Before
 		//	If the player has played before.	
-		if(PlayerPrefs.HasKey("HasPlayedBefore") == true)
+		if (PlayerPrefs.HasKey("HasPlayedBefore") == true)
 		{
 			hasPlayedBefore = true;
 		}
@@ -50,6 +53,9 @@ public class GameManager : MonoBehaviour
 			//	Run the FirstTimePlaying method.
 			FirstTimePlaying();
 		}
+		#endregion
+
+		
 	}
 
 	public void Update()
@@ -70,10 +76,12 @@ public class GameManager : MonoBehaviour
 		hasPlayedBefore = true;
 	}
 
+	
+
 	private void UpdateHighScore()
 	{
 		//	Get access to the high score text componant.
-		TextMeshProUGUI highScoreText = GameObject.Find("HighScore_Easy_Value").GetComponent<TextMeshProUGUI>();
+		TextMeshProUGUI highScoreText = GameObject.Find("HighScoreValue").GetComponent<TextMeshProUGUI>();
 		//	Store the high score value inside a temp float "highScore".
 		float highScore = PlayerPrefs.GetFloat("HighScore", 0);
 		//	Make the time show in minutes and seconds.
