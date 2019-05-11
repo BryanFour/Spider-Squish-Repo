@@ -6,10 +6,10 @@ TagManager:
   tags:
   - LadyBug
   - Spider
-  - Spray
   - SprayCollider
   - GameOverCollider
   - SprayCanDestroyer
+  - CollectableSpray
   layers:
   - Default
   - TransparentFX

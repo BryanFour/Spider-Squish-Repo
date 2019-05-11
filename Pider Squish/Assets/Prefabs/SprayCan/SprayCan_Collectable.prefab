@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7342201611747414805}
   m_Layer: 0
   m_Name: SprayCan_Collectable
-  m_TagString: Untagged
+  m_TagString: CollectableSpray
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3968355430192487536}
-  m_LocalRotation: {x: 0.7034519, y: -0.029216751, z: -0.0362254, w: 0.7092176}
+  m_LocalRotation: {x: 0.703452, y: -0.029219093, z: -0.03622142, w: 0.7092176}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 12.4821005, y: 12.482107, z: 12.482109}
   m_Children: []

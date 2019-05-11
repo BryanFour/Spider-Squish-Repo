@@ -356,8 +356,8 @@ GameObject:
   - component: {fileID: 3626120047816386194}
   - component: {fileID: 9204987315097278333}
   m_Layer: 0
-  m_Name: SprayCan_Collectable
-  m_TagString: Untagged
+  m_Name: SprayCan_Collectable_Old
+  m_TagString: Spray
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -390,6 +390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fallSpeed: 5
+  destroyPosition: 0
 --- !u!136 &9204987315097278333
 CapsuleCollider:
   m_ObjectHideFlags: 0

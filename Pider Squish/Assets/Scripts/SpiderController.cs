@@ -53,7 +53,7 @@ public class SpiderController : MonoBehaviour
 			LevelManager.Instance.GameOver();
 		}
 	}
-	
+	/*
 	// Destroy with mouse click --DEBUG Input--
 	private void OnMouseDown()
 	{
@@ -72,5 +72,5 @@ public class SpiderController : MonoBehaviour
 			Destroy(gameObject);
 		}
 	}
-	
+	*/
 }

@@ -28,7 +28,7 @@ public class CollectSpray : MonoBehaviour
 			RaycastHit hit;
 			Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
 			if (Physics.Raycast(ray, out hit))
-				if (hit.collider.gameObject.tag == "Spray")
+				if (hit.collider.gameObject.tag == "CollectableSpray")
 				{   //	Add 1 to the spray count.
 					sprayCount += 1;
 					//	Save the playerprefs
@@ -47,7 +47,7 @@ public class CollectSpray : MonoBehaviour
 			Destroy(gameObject);
 		}
 	}
-
+	/*
 	// Collect then Destroy with mouse click --DEBUG Input--
 	public void OnMouseDown()
 	{
@@ -62,6 +62,6 @@ public class CollectSpray : MonoBehaviour
 		//	Destroy the collected spray can.
 		Destroy(gameObject);
 	}
-
+	*/
 	
 }
