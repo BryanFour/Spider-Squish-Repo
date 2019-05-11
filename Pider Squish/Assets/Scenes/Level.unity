@@ -10519,8 +10519,8 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: -2.3068985e+18, y: -7.523164e-37, z: 3.009266e-36,
-    w: -6.018531e-36}
+  m_BoundingSphereOverride: {x: 7.3982314e+31, y: 1.9272682e+31, z: 1.1727566e-19,
+    w: 1.3563156e-19}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -18495,7 +18495,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnRate: 10
-  Spray: {fileID: 7340427434490674576, guid: ddcdd0a2aaed14045ac8fc8c9ebff4cf, type: 3}
+  Spray: {fileID: 3968355430192487536, guid: 2f0e709877adfd64b88ca196b0d4a38e, type: 3}
   spawnPoints:
   - {fileID: 437020060}
   - {fileID: 22497158}
@@ -22319,6 +22319,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SprayCan
+      objectReference: {fileID: 0}
+    - target: {fileID: 2489092331811418145, guid: 94cd46fa702e0b7489386752b6be36cf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8123641584511486836, guid: 94cd46fa702e0b7489386752b6be36cf,
         type: 3}
