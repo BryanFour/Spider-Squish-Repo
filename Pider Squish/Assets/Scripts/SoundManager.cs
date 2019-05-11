@@ -31,7 +31,7 @@ public class SoundManager : MonoBehaviour
 
 	// Spider Die Stuff.
 	public AudioClip[] dieSFX;
-	private float dieVolume = 0.25f;
+	private float dieVolume = 0.18f;
 	
 	void Awake()
 	{   // SoundManager instance Stuff.
