@@ -106,4 +106,12 @@ public class GameManager : MonoBehaviour
 		//	Load the level scene.
 		SceneManager.LoadScene(1);
 	}
+
+	public void QuitGame()
+	{
+		//	Play the button SFX
+		SoundManager.Instance.ButtonSFX();
+		//	Quit the game
+		Application.Quit();
+	}
 }
