@@ -43,11 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 975ee6d0482cc654fba001b99f4f4338, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countDownArray:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  countDownText: {fileID: 0}
   sprayCountText: {fileID: 0}
   timerText: {fileID: 0}
   timeSinceStart: 0
@@ -55,8 +51,9 @@ MonoBehaviour:
   gamePlayHasStarted: 0
   highScore: 0
   currentScore: 0
-  spiderStartSpeed: 1.5
+  spiderSpeed: 1
   spiderMaxSpeed: 2
+  tutorialPanel: {fileID: 0}
   gameOver: 0
   gameOverPanel: {fileID: 0}
   disableOnGameOverArray:

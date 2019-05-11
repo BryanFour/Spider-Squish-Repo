@@ -9,7 +9,7 @@ public class SprayTrailController : MonoBehaviour
 
     void Start()
     {
-        
+		//gameObject.SetActive(false);
     }
 
     // Update is called once per frame
