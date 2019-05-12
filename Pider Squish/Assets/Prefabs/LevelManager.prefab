@@ -67,3 +67,5 @@ MonoBehaviour:
   squishedLifetimeAfterPlayText: {fileID: 0}
   sprayedThisGameText: {fileID: 0}
   sprayedLifetimeAfterPlayText: {fileID: 0}
+  newHighScore: {fileID: 0}
+  newHighScoreAnimator: {fileID: 0}

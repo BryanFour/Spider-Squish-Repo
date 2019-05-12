@@ -70,6 +70,8 @@ public class LevelManager : MonoBehaviour
 	public TextMeshProUGUI sprayedThisGameText;
 	//	Lifetime squishes after play
 	public TextMeshProUGUI sprayedLifetimeAfterPlayText;
+	//	New High Score text.
+	public TextMeshProUGUI newHighScore;
 
 	void Awake()
 	{   // LevelManager instance Stuff.
@@ -92,6 +94,7 @@ public class LevelManager : MonoBehaviour
 	}
 	void Start()
     {
+
 		//	Get the amount of spiders squished throughout all the games played before the level is played.
 		squishedLifetimeBeforePlay = PlayerPrefs.GetInt("SpidersSquished");
 		//	Get the amount of spiders sprayed throughout all the games played before the level is played.
@@ -99,6 +102,9 @@ public class LevelManager : MonoBehaviour
 
 		// Set the time scale to 1 on runtime
 		Time.timeScale = 1;
+
+		//Disable the new high score text at runtime.
+		newHighScore.gameObject.SetActive(false);
 
 		// Disable the tutorial panal at runtime
 		tutorialPanel.SetActive(false);
@@ -202,6 +208,9 @@ public class LevelManager : MonoBehaviour
 		{
 			//	Set the high score to the current score
 			PlayerPrefs.SetFloat("HighScore", currentScore);
+			Debug.Log("New High Score");
+			//	Start the new high score text coroutine.
+			StartCoroutine(NewHighScore());
 		}
 
 		//	Forloop to enable everything that gets disabled when game is over
@@ -278,6 +287,13 @@ public class LevelManager : MonoBehaviour
 			StartCoroutine(SprayLastSpawned());
 		}
 		
+	}
+
+	IEnumerator NewHighScore()
+	{
+		newHighScore.gameObject.SetActive(true);
+		yield return new WaitForSecondsRealtime(1.2f);
+		newHighScore.gameObject.SetActive(false);
 	}
 
 	#region Scene Loading Stuff

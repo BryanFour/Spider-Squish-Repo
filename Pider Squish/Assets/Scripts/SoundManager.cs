@@ -81,10 +81,10 @@ public class SoundManager : MonoBehaviour
 		{
 			StartBgMusic();
 		}
-		else if(sceneIndex == 0 && bgMusicIsPlaying == true)
+		else if(sceneIndex == 0 && bgMusicIsPlaying == false)
 		//else if (bgMusicIsPlaying == true)
 		{
-			StopBgMusic();
+			StartBgMusic();
 		}
     }
 	#region Die SFX
