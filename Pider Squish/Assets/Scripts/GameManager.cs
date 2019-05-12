@@ -55,6 +55,8 @@ public class GameManager : MonoBehaviour
 		}
 		#endregion
 
+		//	Show a Banner ad.
+		AdManager.instance.RequestBanner();
 		
 	}
 
@@ -95,6 +97,8 @@ public class GameManager : MonoBehaviour
 	{
 		//	Play the button SFX
 		SoundManager.Instance.ButtonSFX();
+		//	Show Banner ad
+		AdManager.instance.RequestBanner();
 		//	Load the main menu scene.	
 		SceneManager.LoadScene(0);
 	}
@@ -103,6 +107,8 @@ public class GameManager : MonoBehaviour
 	{
 		//	Play the button SFX
 		SoundManager.Instance.ButtonSFX();
+		//	Hide the banner ad.
+		AdManager.instance.HideBanner();
 		//	Load the level scene.
 		SceneManager.LoadScene(1);
 	}

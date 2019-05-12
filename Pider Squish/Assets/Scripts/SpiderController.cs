@@ -51,9 +51,11 @@ public class SpiderController : MonoBehaviour
 			SoundManager.Instance.StopSpraySFX();
 			//	Run the game over method in the level manager.
 			LevelManager.Instance.GameOver();
+			//	Destroy the spiders so the game over method dosnt run over and ovr again.
+			Destroy(gameObject);
 		}
 	}
-	
+	/*
 	// Destroy with mouse click --DEBUG Input--
 	private void OnMouseDown()
 	{
@@ -72,5 +74,5 @@ public class SpiderController : MonoBehaviour
 			Destroy(gameObject);
 		}
 	}
-	
+	*/
 }

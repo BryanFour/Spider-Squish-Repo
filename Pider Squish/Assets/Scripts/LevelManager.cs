@@ -183,6 +183,18 @@ public class LevelManager : MonoBehaviour
 
 	public void GameOver()
 	{
+		#region Full Screen Ad Stuff.
+		int gameOversSinceLastAd = PlayerPrefs.GetInt("GameOvers", 0);
+		gameOversSinceLastAd++;
+		PlayerPrefs.SetInt("GameOvers", gameOversSinceLastAd);
+		int newGameOversSinceLastAd = PlayerPrefs.GetInt("GameOvers");
+		if(newGameOversSinceLastAd >= 3)
+		{
+			PlayerPrefs.SetInt("GameOvers", 0);
+			AdManager.instance.ShowFullScreenAd();
+		}
+		#endregion
+
 		#region Squished Display Stuff
 		//	Get the amount of spiders squished this game.
 		squishedThisGame = PlayerPrefs.GetInt("SpidersSquished") - squishedLifetimeBeforePlay;
@@ -300,6 +312,8 @@ public class LevelManager : MonoBehaviour
 	public void LoadMainMenu()
 	{   //	Play the button SFX
 		SoundManager.Instance.ButtonSFX();
+		//	Show the banner ad.
+		AdManager.instance.RequestBanner();
 		//	Load the main menu scene.	
 		SceneManager.LoadScene(0);
 	}
