@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
 		}
 		#endregion
 
-		
+		//AdManager.instance.RequestBanner();
 	}
 
 	public void Update()
@@ -97,6 +97,8 @@ public class GameManager : MonoBehaviour
 		SoundManager.Instance.ButtonSFX();
 		//	Load the main menu scene.	
 		SceneManager.LoadScene(0);
+		//	Show the banner add
+		//AdManager.instance.RequestBanner();
 	}
 
 	public void LoadLevel()
@@ -105,6 +107,8 @@ public class GameManager : MonoBehaviour
 		SoundManager.Instance.ButtonSFX();
 		//	Load the level scene.
 		SceneManager.LoadScene(1);
+		//	Stop showing the banner add.
+		//AdManager.instance.HideBanner();
 	}
 
 	public void QuitGame()
