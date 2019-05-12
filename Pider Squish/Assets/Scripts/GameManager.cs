@@ -54,14 +54,8 @@ public class GameManager : MonoBehaviour
 			FirstTimePlaying();
 		}
 		#endregion
-
-<<<<<<< HEAD
 		//	Show a Banner ad.
 		AdManager.instance.RequestBanner();
-		
-=======
-		//AdManager.instance.RequestBanner();
->>>>>>> a680e5cbf6da5e5703cbe09d317682bf558d9d9a
 	}
 
 	public void Update()
@@ -105,8 +99,6 @@ public class GameManager : MonoBehaviour
 		AdManager.instance.RequestBanner();
 		//	Load the main menu scene.	
 		SceneManager.LoadScene(0);
-		//	Show the banner add
-		//AdManager.instance.RequestBanner();
 	}
 
 	public void LoadLevel()
@@ -117,8 +109,6 @@ public class GameManager : MonoBehaviour
 		AdManager.instance.HideBanner();
 		//	Load the level scene.
 		SceneManager.LoadScene(1);
-		//	Stop showing the banner add.
-		//AdManager.instance.HideBanner();
 	}
 
 	public void QuitGame()
