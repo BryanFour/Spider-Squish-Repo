@@ -15,6 +15,10 @@ required for displaying ads.
     ca-app-pub-3940256099942544~3347511713 -->
     <meta-data
     android:name="com.google.android.gms.ads.APPLICATION_ID"
+<<<<<<< HEAD
     android:value="ca-app-pub-6894419772863169~2522741580"/>
+=======
+    android:value="[ADMOB APPLICATION ID]"/>
+>>>>>>> a680e5cbf6da5e5703cbe09d317682bf558d9d9a
   </application>
 </manifest>

@@ -183,6 +183,7 @@ public class LevelManager : MonoBehaviour
 
 	public void GameOver()
 	{
+<<<<<<< HEAD
 		#region Full Screen Ad Stuff.
 		int gameOversSinceLastAd = PlayerPrefs.GetInt("GameOvers", 0);
 		gameOversSinceLastAd++;
@@ -192,6 +193,22 @@ public class LevelManager : MonoBehaviour
 		{
 			PlayerPrefs.SetInt("GameOvers", 0);
 			AdManager.instance.ShowFullScreenAd();
+=======
+		#region Ad Stuff
+		//	Game overs since last ad
+		int gameOversSinceLastAd = PlayerPrefs.GetInt("GameOvers", 0);
+		//	Add 1 to the gameovers count
+		gameOversSinceLastAd++;
+		//	Set the new game overs since last ad value in the player prefs
+		PlayerPrefs.SetInt("GameOvers", gameOversSinceLastAd);
+		//	Get the new game overs since last ad value
+		int newGameOverSinceLastAd = PlayerPrefs.GetInt("GameOvers", 0);
+		//	Show an ad if the game overs since last add count is greater than 5
+		if (newGameOverSinceLastAd >= 2)
+		{
+			PlayerPrefs.SetInt("GameOvers", 0);
+			//AdManager.instance.ShowFullScreenAd();
+>>>>>>> a680e5cbf6da5e5703cbe09d317682bf558d9d9a
 		}
 		#endregion
 
@@ -316,6 +333,8 @@ public class LevelManager : MonoBehaviour
 		AdManager.instance.RequestBanner();
 		//	Load the main menu scene.	
 		SceneManager.LoadScene(0);
+		//	Show the banner add
+		//AdManager.instance.RequestBanner();
 	}
 
 	public void LoadLevel()

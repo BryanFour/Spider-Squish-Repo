@@ -5,19 +5,33 @@ using GoogleMobileAds.Api;
 
 public class AdManager : MonoBehaviour
 {
+<<<<<<< HEAD
 	public static AdManager instance;
 
 	public string appID = "ca-app-pub-6894419772863169~2522741580";
 
 	private BannerView bannerView;
 	private string bannerID = "	ca-app-pub-3940256099942544/6300978111";
+=======
+	/*
+	public static AdManager instance;
+
+	private string appID = "";
+
+	private BannerView bannerView;
+	private string bannerID = "ca-app-pub-3940256099942544/6300978111";
+>>>>>>> a680e5cbf6da5e5703cbe09d317682bf558d9d9a
 
 	private InterstitialAd fullScreenAd;
 	private string fullScreenAdID = "ca-app-pub-3940256099942544/8691691433";
 
 	private void Awake()
 	{
+<<<<<<< HEAD
 		if(instance == null)
+=======
+		if (instance == null)
+>>>>>>> a680e5cbf6da5e5703cbe09d317682bf558d9d9a
 		{
 			instance = this;
 		}
@@ -66,7 +80,14 @@ public class AdManager : MonoBehaviour
 		}
 		else
 		{
+<<<<<<< HEAD
 			Debug.Log("Full Screen Ad Not Loaded");
 		}
 	}
+=======
+			Debug.Log("Full screen ad not loaded");
+		}
+	}
+	*/
+>>>>>>> a680e5cbf6da5e5703cbe09d317682bf558d9d9a
 }
