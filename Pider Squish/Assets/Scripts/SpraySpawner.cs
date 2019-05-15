@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class SpraySpawner : MonoBehaviour
 {
-	public int spawnRate = 2;
+	public int spawnRate = 2; //------------- probally not needed.
 	public GameObject Spray;
 	public Transform[] spawnPoints;
 
 	//	Number of seconds between spray spawns
-	private float spraySpawnInterval = 5;
+	private float spraySpawnInterval = 150;
 
 
 	void Start()

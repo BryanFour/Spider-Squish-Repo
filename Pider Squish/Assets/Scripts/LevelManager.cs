@@ -43,7 +43,7 @@ public class LevelManager : MonoBehaviour
 	//	The speed the spiders start with.
 	public float spiderSpeed = 1f;
 	//	The spiders maximum speed.
-	public float spiderMaxSpeed = 2f;
+	public float spiderMaxSpeed = 2f; //----- probally not needed.
 	
 	//	----- Tutorial stuff
 	//	Get access to the tutorial game object.
@@ -160,6 +160,7 @@ public class LevelManager : MonoBehaviour
 		sprayCountText.text = PlayerPrefs.GetInt("SprayCount", 0).ToString();
 
 	}
+
 	#region Open / Close Tutorial
 	//	Open the tutorial
 	public void OpenSprayTutorial()
@@ -254,16 +255,19 @@ public class LevelManager : MonoBehaviour
 
 	IEnumerator SpiderSpeed()
 	{
-		if(spiderSpeed < spiderMaxSpeed)
+		if(spiderSpeed < 2)
 		{
 			yield return new WaitForSecondsRealtime(15);
 			spiderSpeed = spiderSpeed + 0.5f;
-			Debug.Log("speed inscreased");
+			Debug.Log("speed inscreased to " + spiderSpeed);
 			StartCoroutine(SpiderSpeed()); 
 		}
-		else if(Time.timeScale == 0)
+		else if(spiderSpeed >= 2)
 		{
-			Debug.Log("Max Speed Reached");
+			yield return new WaitForSecondsRealtime(15);
+			spiderSpeed = spiderSpeed + 0.1f;
+			Debug.Log("speed inscreased to " + spiderSpeed);
+			StartCoroutine(SpiderSpeed());
 		}
 	}
 

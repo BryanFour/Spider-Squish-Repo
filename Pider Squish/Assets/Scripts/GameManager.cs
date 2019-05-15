@@ -114,4 +114,12 @@ public class GameManager : MonoBehaviour
 		//	Quit the game
 		Application.Quit();
 	}
+
+	public void PrivacyPolicy()
+	{
+		//	Play the button SFX
+		SoundManager.Instance.ButtonSFX();
+		//
+		Application.OpenURL("https://burninghairstudios.wordpress.com/");
+	}
 }
