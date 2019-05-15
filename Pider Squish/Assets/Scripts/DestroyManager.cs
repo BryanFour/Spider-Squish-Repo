@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class DestroyManager : MonoBehaviour
 {
+	//	The green blood splatter particle system prefab.
 	public GameObject bloodSplatter;
-
 	//	Spiders squished count
 	private int spidersSquishedCount;
 
@@ -30,7 +30,6 @@ public class DestroyManager : MonoBehaviour
 					spidersSquishedCount += 1;
 					//	set the player prefs SpidersSquished value to the new spidersSquishedcount.
 					PlayerPrefs.SetInt("SpidersSquished", spidersSquishedCount);
-					Debug.Log("SPiders Squished = " + PlayerPrefs.GetInt("SpidersSquished"));
 					//	Destroy the object that was hit by the ray
 					Destroy(hit.transform.gameObject);
 				}

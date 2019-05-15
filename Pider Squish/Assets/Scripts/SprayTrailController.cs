@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class SprayTrailController : MonoBehaviour
 {
+	//	The gameobject/position we want the spray cloud / spray trail / poison to follow.
 	public Transform nozzlePosition;
 
-
-    void Start()
-    {
-		//gameObject.SetActive(false);
-    }
-
-    // Update is called once per frame
     void Update()
     {
 

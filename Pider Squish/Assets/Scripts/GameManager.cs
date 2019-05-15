@@ -9,13 +9,8 @@ public class GameManager : MonoBehaviour
 {
 	// GameManager instance Stuff.
 	public static GameManager Instance { get; set; }
-	// GameManager instance Stuff End.
 
-	//	Is this the first time playing the game.
-	public bool hasPlayedBefore = false;    //--------- Remove this if its not needed.
-
-	
-
+	//	The HighScoreValue GameObject in the Main Menus Canvas>HighScore
 	private GameObject highScoreText;
 
 	void Awake()
@@ -40,29 +35,21 @@ public class GameManager : MonoBehaviour
 
 	private void Start()
 	{
-		#region Has Played Before
-		//	If the player has played before.	
-		if (PlayerPrefs.HasKey("HasPlayedBefore") == true)
-		{
-			hasPlayedBefore = true;
-		}
 		//	If the player hasnt played before
-		else if(PlayerPrefs.HasKey("HasPlayedBefore") == false)
+		if(PlayerPrefs.HasKey("HasPlayedBefore") == false)
 		{
-			hasPlayedBefore = false;
 			//	Run the FirstTimePlaying method.
 			FirstTimePlaying();
 		}
-		#endregion
-
-		
 	}
 
 	public void Update()
 	{
 		//	Display the high score on the main menu scene
 		Scene currentScene = SceneManager.GetActiveScene();
+		//	Get the current scenes name.
 		string sceneName = currentScene.name;
+		//	If we are on the main menu, update the High Score.
 		if(sceneName == "MainMenu")
 		{
 			UpdateHighScore();
@@ -71,9 +58,10 @@ public class GameManager : MonoBehaviour
 
 	private void FirstTimePlaying()
 	{
+		//	Set the players spray count to 5 if its the first time playing.
 		PlayerPrefs.SetInt("SprayCount", 5);
+		//	Create a PlayerPrefs key for the "HasPlayedBefore" string
 		PlayerPrefs.SetString("HasPlayedBefore", "Yes");
-		hasPlayedBefore = true;
 	}
 
 	
@@ -119,7 +107,7 @@ public class GameManager : MonoBehaviour
 	{
 		//	Play the button SFX
 		SoundManager.Instance.ButtonSFX();
-		//
+		//	The privacy policy link.
 		Application.OpenURL("https://burninghairstudios.wordpress.com/");
 	}
 }

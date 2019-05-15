@@ -11,7 +11,7 @@ public class SpiderController : MonoBehaviour
 	private float spiderSpeed;
 	//	Get access to the spider animation clip, Drop the spider prefab in here to get it.
 	public Animation spiderAnim;
-	//
+	//	The green blood splater partical system prefab. Only used for the debugging onmouse down event.
 	public GameObject bloodSplatter;
 	//	Spiders squished count
 	private int spidersSquishedCount;
@@ -55,7 +55,7 @@ public class SpiderController : MonoBehaviour
 			Destroy(gameObject);
 		}
 	}
-	/*
+	
 	// Destroy with mouse click --DEBUG Input--
 	private void OnMouseDown()
 	{
@@ -74,5 +74,5 @@ public class SpiderController : MonoBehaviour
 			Destroy(gameObject);
 		}
 	}
-	*/
+	
 }

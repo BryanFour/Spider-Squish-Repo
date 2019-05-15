@@ -4,25 +4,24 @@ using UnityEngine;
 
 public class CollectSpray : MonoBehaviour
 {
-	// Spray Count Stuff.
+	//	The amount of sprays the player has.
 	private int sprayCount;
-	//	
-	public float fallSpeed = 5;
-	//	the destroy cans not collected  Z position
-	public float destroyPosition;
+	//	The speed the collectable spray cans fall.
+	private float fallSpeed = 5;
 
 	void Start()
     {
-		//	Collect Spray Can Stuff.
+		//	Get the amount of sprays the player has from the PlayerPrefs.
 		sprayCount = PlayerPrefs.GetInt("SprayCount");
 	}
 
     void Update()
     {
-		//	Spray can fall stuff.
+		//	make the collectable sprays "fall" along the z-axis relative to the world space.
 		transform.Translate(new Vector3(0, 0, -fallSpeed) * Time.deltaTime, Space.World);
 
-		//	Collect Spray Can Stuff.
+		//	----- Collect Spray Can Stuff.
+		//	If the player is touching the screen in atleast 1 place and isnt dragging there finger
 		if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
 		{
 			RaycastHit hit;
@@ -41,13 +40,13 @@ public class CollectSpray : MonoBehaviour
 					Destroy(hit.transform.gameObject);
 				}
 		}
-		// Destroy cans that are not collected.
+		//	If the collectabe cans position is less than or equal to -10 on the z-axis, destroy the can because its off screen.
 		if(transform.position.z <= -10)
 		{
 			Destroy(gameObject);
 		}
 	}
-	/*
+	
 	// Collect then Destroy with mouse click --DEBUG Input--
 	public void OnMouseDown()
 	{
@@ -62,6 +61,6 @@ public class CollectSpray : MonoBehaviour
 		//	Destroy the collected spray can.
 		Destroy(gameObject);
 	}
-	*/
+	
 	
 }

@@ -7,17 +7,6 @@ public class SprayCollision : MonoBehaviour
 	//	Spiders sprayed count
 	private int spidersSprayedCount;
 
-	void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 	private void OnParticleCollision(GameObject col)
 	{
 		//	get the amount of spiders sprayed.
@@ -29,6 +18,7 @@ public class SprayCollision : MonoBehaviour
 
 		//	Play the die SFX	
 		SoundManager.Instance.DieSFX();
+		//	Destroy the sprayed spider.
 		Destroy(transform.parent.gameObject);
 	}
 }

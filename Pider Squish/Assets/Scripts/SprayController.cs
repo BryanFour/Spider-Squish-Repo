@@ -9,7 +9,7 @@ public class SprayController : MonoBehaviour
 	//	Move With Mouse Stuff.
 	private float actualDistance;
 	//	Bool to stop players activating can while acan is already active
-	public bool canActive = false;
+	[HideInInspector] public bool canActive = false;
 	// How long we can spray for
 	private float lengthOfSpray = 10;
 	//	How long the spray cooldown is.
@@ -67,7 +67,7 @@ public class SprayController : MonoBehaviour
 		transform.position = Camera.main.ScreenToWorldPoint(mousePosition);
 	}
 
-	public void ActivateCan()
+	public void ActivateCan()	// ----- Dont forget to call this method from the close spray tutorial button.
 	{
 		#region Has Sprayed Before
 		//	If the player has sprayed before.	
@@ -82,15 +82,14 @@ public class SprayController : MonoBehaviour
 		}
 		#endregion
 
-		// Play the button SFX
+		// Play the button press SFX
 		SoundManager.Instance.ButtonSFX();
-		//	If the spray can is not active and we have atleast 1 in our inventory and the pre start countdown has finished and we are not on cooldown.
-		//--- can active bool Probally not need now we have a onCoolDown bool
+		//	If the spray can is not active and we have atleast 1 in our inventory and the pre start countdown has finished and we are not on cooldown and the can is not active already.
 		if (!canActive && PlayerPrefs.GetInt("SprayCount") > 0 && LevelManager.Instance.countDownHasFinished == true && onCoolDown == false)
-		{
+		{	
+			//	If the bug spray isn't on cooldown and we have atleast 1 in our inventory and the player has seen the spray tutorial.
 			if (sprayCoolDownLength < Time.time - coolDownStartTime && hasSprayedBefore == true)
 			{
-				Debug.Log("PLayer has sprayed before");
 				// Enable all the can parts
 				for (int i = 0; i < childrenArray.Length; i++)
 				{
@@ -109,18 +108,21 @@ public class SprayController : MonoBehaviour
 			}
 			else
 			{
-				// call the first time spraying method from the levelmanager
+				// If the player hasn't use the bug spray before, call the first time spraying method from the levelmanager
 				LevelManager.Instance.OpenSprayTutorial();
 			}
 		}
 	}
 
 	IEnumerator SprayDuration()
-	{
+	{	
+		//	Wait for the spray to finish spraying (The length of the spray)
 		yield return new WaitForSecondsRealtime(lengthOfSpray);
 		//	Bool to stop players activating can while acan is already active
 		canActive = false;
+		//	After the can has finished spraying set the cooldown bool to true (We are now on cooldown).
 		onCoolDown = true;
+		//	The time that the cooldown started.
 		coolDownStartTime = Time.time;
 		// Disable all the can parts
 		for (int i = 0; i < childrenArray.Length; i++)
@@ -145,8 +147,10 @@ public class SprayController : MonoBehaviour
 		{
 			//	Display the cooldown value.
 			coolDownValueText.text = coolDownValue.ToString();
+			//	Decrement the cool down value by 1.
 			coolDownValue -= 1;
 			yield return new WaitForSecondsRealtime(1);
+			//	Restart the cooldown routine after waiting 1 second.
 			StartCoroutine(CoolDown());
 		}
 		else

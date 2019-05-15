@@ -9,14 +9,10 @@ public class LevelManager : MonoBehaviour
 {
 	// GameManager instance Stuff.
 	public static LevelManager Instance { get; set; }
-	// GameManager instance Stuff End.
-
-	//	Spray spawning stuff
-	private float timeSinceLastSpraySpawn; //--------------- delete if not needed
-
+	
+	//	----- Game Play UI Stuff.
 	//	The count down text componant.
 	public TextMeshProUGUI countDownText;
-
 	//	Spray Count Stuff.
 	public TextMeshProUGUI sprayCountText;
 	
@@ -26,31 +22,26 @@ public class LevelManager : MonoBehaviour
 	//	How long the player has been playing not including the countdown.
 	private float timePlayed;
 	//	How long the app has been running for.
-	public float timeSinceStart;
+	private float timeSinceStart;
 	//	How long the countdown is.
 	private const float PRE_START_COUNTDOWN = 4;
 	//	A bool to tell weather the countdown has finished or not.
-	public bool countDownHasFinished = false;
+	[HideInInspector] public bool countDownHasFinished = false;
 	//	When the game started / when the player starts playing, spiders come out, timers starts ect.
-	public float gamePlayHasStarted;
+	[HideInInspector] public float gamePlayHasStarted;
 
-	//	High Score Stuff
-	public float highScore; //--------- dosnt seem to be used anywhere.
 	//	The players current score (How long the player lasted with dieing).
-	public float currentScore;
+	private float currentScore;
 
-	//	----- The spiders speed to be increased in the coroutine.
-	//	The speed the spiders start with.
-	public float spiderSpeed = 1f;
-	//	The spiders maximum speed.
-	public float spiderMaxSpeed = 2f; //----- probally not needed.
+	//	The speed the spiders start with, to be increased in the coroutine.
+	[HideInInspector] public float spiderSpeed = 1f;
 	
 	//	----- Tutorial stuff
 	//	Get access to the tutorial game object.
 	public GameObject tutorialPanel;
 
 	//	----- Game Over Stuff
-	public bool gameOver = false;
+	[HideInInspector] public bool gameOver = false;
 	public GameObject gameOverPanel;
 	//	Everything that has to be disabled when game is over
 	public GameObject[] disableOnGameOverArray;
@@ -89,9 +80,8 @@ public class LevelManager : MonoBehaviour
 			Destroy(gameObject);
 
 		}
-		//DontDestroyOnLoad(gameObject);
-		// LevelManager instance Stuff End.
 	}
+
 	void Start()
     {
 
@@ -170,7 +160,7 @@ public class LevelManager : MonoBehaviour
 		tutorialPanel.SetActive(true);
 	}
 
-	public void CloseSprayTutorial()
+	public void CloseSprayTutorial()	// ----- Dont forget to call this method from the close spray tutorial button.
 	{
 		Time.timeScale = 1;
 		//	Disable the tutorial panel
@@ -209,7 +199,6 @@ public class LevelManager : MonoBehaviour
 		{
 			//	Set the high score to the current score
 			PlayerPrefs.SetFloat("HighScore", currentScore);
-			Debug.Log("New High Score");
 			//	Start the new high score text coroutine.
 			StartCoroutine(NewHighScore());
 		}
@@ -256,17 +245,19 @@ public class LevelManager : MonoBehaviour
 	IEnumerator SpiderSpeed()
 	{
 		if(spiderSpeed < 2)
-		{
+		{	//	If the spiders speed is less than 2
 			yield return new WaitForSecondsRealtime(15);
+			//	Increase the spiders speed by 0.5f
 			spiderSpeed = spiderSpeed + 0.5f;
-			Debug.Log("speed inscreased to " + spiderSpeed);
+			//	Restart the routine.
 			StartCoroutine(SpiderSpeed()); 
 		}
 		else if(spiderSpeed >= 2)
-		{
+		{	//	if the spiders speed is greater than 2
 			yield return new WaitForSecondsRealtime(15);
+			//	Increase the spiders speed by 0.1f
 			spiderSpeed = spiderSpeed + 0.1f;
-			Debug.Log("speed inscreased to " + spiderSpeed);
+			//	Restart the routine.
 			StartCoroutine(SpiderSpeed());
 		}
 	}
@@ -278,25 +269,25 @@ public class LevelManager : MonoBehaviour
 			yield return new WaitForSecondsRealtime(1);
 			float sprayLastSpawnedValue = PlayerPrefs.GetFloat("SprayLastSpawned", 0);
 			//	Add the time played to the the player prefs "SprayLastSpawned value".
-			//float newSprayLastSpawnedValue = sprayLastSpawnedValue + timePlayed;
 			float newSprayLastSpawnedValue = sprayLastSpawnedValue + 1;
 			//	Change the player prefs "SprayLastSpawned" value to the newSprayLastSpawnedValue
 			PlayerPrefs.SetFloat("SprayLastSpawned", newSprayLastSpawnedValue);
-			//Debug.Log(newSprayLastSpawnedValue);
 			StartCoroutine(SprayLastSpawned());
 		}
 		else
-		{
+		{	//	If the timescale isnt set to 1 (the game is paused/frozen)
 			yield return new WaitForSecondsRealtime(1);
+			//	Restart this routine.
 			StartCoroutine(SprayLastSpawned());
 		}
 		
 	}
 
 	IEnumerator NewHighScore()
-	{
+	{	//	If the player beats there high score, enable the New High Score text
 		newHighScore.gameObject.SetActive(true);
 		yield return new WaitForSecondsRealtime(1.2f);
+		//	Disable the new high score text
 		newHighScore.gameObject.SetActive(false);
 	}
 

@@ -56,20 +56,17 @@ public class SoundManager : MonoBehaviour
 	void Start()
 	{
 		squishAudioSource = gameObject.AddComponent<AudioSource>();
+		rattleAudioSource = gameObject.AddComponent<AudioSource>();
+		dieAudioSource = gameObject.AddComponent<AudioSource>();
+		buttonAudioSource = gameObject.AddComponent<AudioSource>();
+		countDownAudioSource = gameObject.AddComponent<AudioSource>();
+
+		sprayingAudioSource = gameObject.AddComponent<AudioSource>();
+		sprayingAudioSource.clip = spraySFX;
+
 		bgAudioSource = gameObject.AddComponent<AudioSource>();
 		bgAudioSource.loop = true;
 		bgAudioSource.clip = bgMusic;
-		//	Spray Can Spray Stuff
-		sprayingAudioSource = gameObject.AddComponent<AudioSource>();
-		sprayingAudioSource.clip = spraySFX; //---- Probally not needed
-		//	Spray Can Rattle Stuff.
-		rattleAudioSource = gameObject.AddComponent<AudioSource>();
-		//	Die SFX Stuff
-		dieAudioSource = gameObject.AddComponent<AudioSource>();
-		//	Button SFX Stuff
-		buttonAudioSource = gameObject.AddComponent<AudioSource>();
-		//	CountDown Beep
-		countDownAudioSource = gameObject.AddComponent<AudioSource>();
 	}
 
     void Update()
@@ -77,12 +74,10 @@ public class SoundManager : MonoBehaviour
 		//	BackGround SFX
 		sceneIndex = SceneManager.GetActiveScene().buildIndex;
 		if (sceneIndex == 1 && bgMusicIsPlaying == false)
-		//if (bgMusicIsPlaying == false)
 		{
 			StartBgMusic();
 		}
 		else if(sceneIndex == 0 && bgMusicIsPlaying == false)
-		//else if (bgMusicIsPlaying == true)
 		{
 			StartBgMusic();
 		}
