@@ -46,7 +46,7 @@ public class CollectSpray : MonoBehaviour
 			Destroy(gameObject);
 		}
 	}
-	
+	/*
 	// Collect then Destroy with mouse click --DEBUG Input--
 	public void OnMouseDown()
 	{
@@ -62,5 +62,5 @@ public class CollectSpray : MonoBehaviour
 		Destroy(gameObject);
 	}
 	
-	
+	*/
 }
