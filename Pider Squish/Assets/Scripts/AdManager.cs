@@ -12,7 +12,7 @@ public class AdManager : MonoBehaviour
 	public static AdManager Instance;
 
 	[Header("Config")]
-	[SerializeField] private string gameID = "";
+	[SerializeField] private string gameID = "3149495";
 	[SerializeField] private bool testMode = true;
 	[SerializeField] private string rewardedVideoPlacementID;
 	[SerializeField] private string regularPlacementID;
@@ -43,7 +43,7 @@ public class AdManager : MonoBehaviour
 		Advertisement.Initialize(gameID, testMode);
 	}
 
-	public void ShowRegularAd(Action<ShowResult> callback)
+	public void RequestRegularAd(Action<ShowResult> callback)
 	{
 #if UNITY_ADS
 		if (Advertisement.IsReady(regularPlacementID))
@@ -61,7 +61,7 @@ public class AdManager : MonoBehaviour
 #endif
 	}
 
-	public void ShowRewardedAd(Action<ShowResult> callback)
+	public void RequestRewardedAd(Action<ShowResult> callback)
 	{
 #if UNITY_ADS
 		if (Advertisement.IsReady(rewardedVideoPlacementID))
@@ -77,5 +77,38 @@ public class AdManager : MonoBehaviour
 #else
 		Debug.Log("Ads not supported");
 #endif
+	}
+
+	//	Call the regular ad from here, not from the AdManager
+	public void PlayRegularAd()
+	{
+		RequestRegularAd(OnAdClosed);
+	}
+	//	Call the rewarded ad from here, not from the AdManager
+	public void PlayRewardedAd()
+	{
+		RequestRewardedAd(OnRewardedAdClosed);
+	}
+
+	private void OnAdClosed(ShowResult result)
+	{
+		Debug.Log("Regular ad closed");
+	}
+
+	private void OnRewardedAdClosed(ShowResult result)
+	{
+		Debug.Log("Rewarded ad closed");
+		switch (result)
+		{
+			case ShowResult.Finished:
+				Debug.Log("Ad finished, reward player");
+				break;
+			case ShowResult.Skipped:
+				Debug.Log("Ad skipped, no reward");
+				break;
+			case ShowResult.Failed:
+				Debug.Log("Ad failed");
+				break;
+		}
 	}
 }
