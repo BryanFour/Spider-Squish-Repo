@@ -13,7 +13,7 @@ public class AdManager : MonoBehaviour
 
 	[Header("Config")]
 	[SerializeField] private string gameID = "3149495";
-	[SerializeField] private bool testMode = true;
+	[SerializeField] private bool testMode = false;
 	[SerializeField] private string rewardedVideoPlacementID = "rewardedVideo";
 	[SerializeField] private string regularPlacementID = "video";
 
