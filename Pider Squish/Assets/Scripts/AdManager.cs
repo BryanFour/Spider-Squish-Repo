@@ -14,8 +14,8 @@ public class AdManager : MonoBehaviour
 	[Header("Config")]
 	[SerializeField] private string gameID = "3149495";
 	[SerializeField] private bool testMode = true;
-	[SerializeField] private string rewardedVideoPlacementID;
-	[SerializeField] private string regularPlacementID;
+	[SerializeField] private string rewardedVideoPlacementID = "rewardedVideo";
+	[SerializeField] private string regularPlacementID = "video";
 
 
 	void Awake()
@@ -103,7 +103,6 @@ public class AdManager : MonoBehaviour
 			case ShowResult.Finished:
 				Debug.Log("Ad finished, reward player");
 				GameManager.Instance.RewardPlayer();
-				RequestRewardedAd(OnRewardedAdClosed);
 				break;
 			case ShowResult.Skipped:
 				Debug.Log("Ad skipped, no reward");
