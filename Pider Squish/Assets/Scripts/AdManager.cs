@@ -79,12 +79,12 @@ public class AdManager : MonoBehaviour
 #endif
 	}
 
-	//	Call the regular ad from here, not from the AdManager
+	
 	public void PlayRegularAd()
 	{
 		RequestRegularAd(OnAdClosed);
 	}
-	//	Call the rewarded ad from here, not from the AdManager
+	
 	public void PlayRewardedAd()
 	{
 		RequestRewardedAd(OnRewardedAdClosed);
@@ -102,6 +102,8 @@ public class AdManager : MonoBehaviour
 		{
 			case ShowResult.Finished:
 				Debug.Log("Ad finished, reward player");
+				GameManager.Instance.RewardPlayer();
+				RequestRewardedAd(OnRewardedAdClosed);
 				break;
 			case ShowResult.Skipped:
 				Debug.Log("Ad skipped, no reward");

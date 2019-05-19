@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3044912209874735258}
   - component: {fileID: 3044912209874735261}
-  - component: {fileID: 3044912209874735259}
   m_Layer: 0
   m_Name: AdManager
   m_TagString: Untagged
@@ -44,19 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e91685db04633f84091a8da58707ad1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameID: 
+  gameID: 3149495
   testMode: 1
   rewardedVideoPlacementID: rewardedVideo
   regularPlacementID: video
---- !u!114 &3044912209874735259
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3044912209874735256}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbbc6bd8800387742a8267bf5eb98b1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

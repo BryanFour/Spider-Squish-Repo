@@ -174,6 +174,20 @@ public class LevelManager : MonoBehaviour
 
 	public void GameOver()
 	{
+		#region Ad Stuff
+		int gameOvers = PlayerPrefs.GetInt("GameOvers", 0);
+		if(gameOvers < 4)
+		{
+			gameOvers++;
+			PlayerPrefs.SetInt("GameOvers", gameOvers);
+		}
+		else if(gameOvers >= 4)
+		{
+			PlayerPrefs.SetInt("GameOvers", 0);
+			AdManager.Instance.PlayRegularAd();
+		}
+		#endregion
+
 		#region Squished Display Stuff
 		//	Get the amount of spiders squished this game.
 		squishedThisGame = PlayerPrefs.GetInt("SpidersSquished") - squishedLifetimeBeforePlay;
